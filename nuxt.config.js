@@ -34,5 +34,10 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  /*
+  ** Base styles
+  */
+  css: ['@/assets/styles/main.scss'],
+
 }
