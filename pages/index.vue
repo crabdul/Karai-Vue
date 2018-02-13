@@ -1,7 +1,13 @@
 <template>
   <section class="container">
     <div>
-      <BlockTiles :posts="posts" />
+      <BlockTiles :posts="trackPosts" />
+    </div>
+    <div>
+      <BlockTiles :posts="albumPosts" />
+    </div>
+    <div>
+      <BlockTiles :posts="radioPosts" />
     </div>
   </section>
 </template>
@@ -11,13 +17,19 @@ import BlockTiles from '~/components/home/BlockTiles.vue'
 import wp from '~/lib/wp'
 
 export default {
-  data() {
-    return {
-      posts: [],
-    }
-  },
+  // GET Data before loading components
   async asyncData ({ params }) {
-    return wp.posts()
+    const page = 1;
+    const [trackPosts, albumPosts, radioPosts] = await Promise.all([
+        wp.trackPosts(page),
+        wp.albumPosts(page),
+        wp.radioPosts(page)
+      ])
+    return {
+      trackPosts,
+      albumPosts,
+      radioPosts,
+    }
   },
   components: {
     BlockTiles

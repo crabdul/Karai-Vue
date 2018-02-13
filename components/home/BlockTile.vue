@@ -1,6 +1,6 @@
 <template>
   <article>
-    <h2 class="subtitle">{{ post.title.rendered }}</h2>
+    <h2 class="subtitle">{{ post.acf.title }}</h2>
     <!-- <div v-html="post.excerpt.rendered"></div> -->
   </article>
 </template>
