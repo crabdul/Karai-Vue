@@ -11,19 +11,19 @@ export const types = {
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      trackPosts: {},
-      albumPosts: {},
-      radioPosts: {}
+      trackPosts: [],
+      albumPosts: [],
+      radioPosts: []
     },
     mutations: {
       [types.INITIAL_TRACK_DATA] (state, payload) {
-        state.trackPosts = { ...payload }
+        state.trackPosts = payload
       },
       [types.INITIAL_ALBUM_DATA] (state, payload) {
-        state.albumPosts = { ...payload }
+        state.albumPosts = payload
       },
       [types.INITIAL_RADIO_DATA] (state, payload) {
-        state.radioPosts = { ...payload }
+        state.radioPosts = payload
       },
     },
     actions: {
@@ -36,6 +36,11 @@ const createStore = () => {
             commit(types.INITIAL_RADIO_DATA, res[2])
           })
       }
+    },
+    getters: {
+        getTrackBySlug: (state) => (slug) => {
+            return state.trackPosts.find(track => track.slug === slug.split('/')[2])
+        }     
     }
   })
 }

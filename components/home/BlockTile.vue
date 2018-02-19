@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link 
+    <nuxt-link 
       :to="`tracks/${post.slug}`"
       class="item" >
       <div class="img-container">
@@ -11,7 +11,7 @@
         <h3 class="artist">{{ post.acf.artist }} </h3>
         <h4 class="date">{{ post.acf.date }}</h4>
       </div>
-    </router-link>
+    </nuxt-link>
   </div>
 </template>
 

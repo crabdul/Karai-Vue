@@ -21,7 +21,7 @@ import RadioTile from './RadioTile.vue'
 
 export default {
   props: {
-    posts: { type: Object },
+    posts: { type: Array },
     section: { type: String }
   },
   components: {

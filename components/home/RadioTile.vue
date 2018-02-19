@@ -1,6 +1,6 @@
 <template>
     <div class="items">
-        <router-link 
+        <nuxt-link 
         :to="{ name: 'radio', query: post.acf.title }"
         class="item" >
             <div class="img-container">            
@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-        </router-link>
+        </nuxt-link>
     </div>
 </template>
 
