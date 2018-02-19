@@ -39,13 +39,35 @@ import wp from '~/lib/wp'
     // import { eventBus } from '../../components/eventBus/eventBus';
 
     export default {
-        data () {
-            return {
-                posts: []
+        // fetch ({store, params}) {
+        //     console.log(params);
+        //     return store.getters.getTrackBySlug(params)
+        //     .then((data) => {
+        //         console.log(data[0]);
+        //         return { posts: data[0] }
+        //     })
+        // },
+        // fetch ({store, params}) {
+            // if(store.getters.checkTrackBySlug(params)) {
+            //     const 
+            // }
+            // console.log(params);
+            // return store.getters.getTrackBySlug(params)
+            // .then((data) => {
+            //     console.log(data[0]);
+            //     return { posts: data[0] }
+            // })
+        async fetch ({ store, params }) {
+            if (!store.getters.checkTrackBySlug(params)) {
+                const data = await wp.getPost(params.track)
+                console.log(data);
+                store.dispatch('addPostData', data)
             }
         },
-        created () {
-            this.posts.push(this.$store.getters.getTrackBySlug(this.$route.path))
+        data () {
+            return {
+                posts: [this.$store.getters.getTrackBySlug(this.$route.path)]
+            }
         },
         // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
         mounted () {
