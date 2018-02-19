@@ -39,35 +39,19 @@ import wp from '~/lib/wp'
     // import { eventBus } from '../../components/eventBus/eventBus';
 
     export default {
-
-        // created() {
-        //     window.addEventListener('scroll', this.changeURL);
-        //     if(window.innerWidth >= 960 ){
-        //         window.addEventListener('scroll', this.parallax );
-        //     }
-        //     // re
-        //     window.onresize = () => {
-        //         // toggle scroll event listener for parallax
-        //         if(window.innerWidth >= 960) {
-        //             window.addEventListener('scroll', this.parallax );
-        //          } else { 
-        //             window.removeEventListener('scroll', this.parallax );
-        //             // remove transformation
-        //             [...this.$el.querySelectorAll('.post-content__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-        //             [...this.$el.querySelectorAll('.post-details__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-        //          };
-        //     }
-        // },
         data () {
             return {
                 posts: []
             }
         },
-
         created () {
             this.posts.push(this.$store.getters.getTrackBySlug(this.$route.path))
         },
-
+        // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
+        mounted () {
+            this.windowResize();
+            this.windowScroll();
+        },
         methods: {
             // Determine if central element is in the viewport
             isInViewportSingle: function(element) {
@@ -118,6 +102,25 @@ import wp from '~/lib/wp'
                 let midEl = (rect.top + rect.bottom) / 2;
                 const ratio = (midEl - midViewPort)/midViewPort;
                 return ratio
+            },
+            windowResize() {
+                window.onresize = () => {
+                    // toggle scroll event listener for parallax
+                    if(window.innerWidth >= 960) {
+                        window.addEventListener('scroll', this.parallax );
+                    } else { 
+                        window.removeEventListener('scroll', this.parallax );
+                        // remove transformation
+                        [...this.$el.querySelectorAll('.post-content__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
+                        [...this.$el.querySelectorAll('.post-details__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
+                    };
+                }
+            },
+            windowScroll() {
+                window.addEventListener('scroll', this.changeURL);
+                if(window.innerWidth >= 960 ){
+                    window.addEventListener('scroll', this.parallax );
+                }
             }
         },
         destroyed() {
