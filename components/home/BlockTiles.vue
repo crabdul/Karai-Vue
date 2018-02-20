@@ -1,11 +1,11 @@
 <template>
   <section>
-    <router-link 
+    <nuxt-link 
       :to="section" 
       tag="div" 
       class="section-header">
       <h2 class="section-title">new {{ section }}</h2>
-    </router-link>
+    </nuxt-link>
     <ul class="items">
       <li v-for="post in posts" :key="post.id">
         <BlockTile :post="post" class="item" v-if="section === 'tracks' || section === 'albums'"/>

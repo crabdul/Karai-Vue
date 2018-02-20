@@ -87,9 +87,6 @@ import VueYouTubeEmbed from 'vue-youtube-embed'
 Vue.use(VueYouTubeEmbed)
 
 export default {
-    // components: {
-    //     youtube: VueYoutubeEmbed
-    // },
     data() {
         return {
             showPlayer: true,
@@ -103,7 +100,6 @@ export default {
             currentTime: '0:00',
             currentTimeSec: 0,
             progressPercent: 0,
-
         }
     },
     watch: {
@@ -120,19 +116,7 @@ export default {
         }
 
     },
-    // created() {
-    //     eventBus.$on('playerStarted', songInfo => {
-    //         this.loadYoutube(songInfo);
-    //         this.showPause = true;
-    //     });
-    // },
     methods: {
-        loadYoutube: function(songInfo) {
-            this.currentSong = songInfo.title;
-            this.currentArtist = songInfo.artist;
-            this.videoID = songInfo.videoId;
-            this.currentImage = songInfo.image;
-        },
         toggleSpinner: function() {
             this.showSpinner = false;
         },
@@ -146,6 +130,7 @@ export default {
             this.player = player;
         },
         playing() {
+            this.showPause = true;
             this.toggleSpinner();
             this.setDuration();  
             this.checkCurrentTime();

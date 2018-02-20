@@ -20,9 +20,9 @@
                 </div>
                 <div class="menu__list">
                     <ul @click="toggleNav()">
-                        <router-link :to="'/tracks/all'" tag="li"><div class="menu__item">new tracks</div></router-link>
-                        <router-link :to="'/albums/all'" tag="li"><div class="menu__item">new albums</div></router-link>
-                        <router-link :to="'/radio'" tag="li"><div class="menu__item">radio</div></router-link>
+                        <nuxt-link :to="'/tracks/'" tag="li"><div class="menu__item">new tracks</div></nuxt-link>
+                        <nuxt-link :to="'/albums/'" tag="li"><div class="menu__item">new albums</div></nuxt-link>
+                        <nuxt-link :to="'/radio'" tag="li"><div class="menu__item">radio</div></nuxt-link>
                     </ul>
                 </div>
             </div>
