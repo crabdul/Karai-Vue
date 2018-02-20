@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-      <BlockTiles class="trackPosts" :posts="this.$store.state.trackPosts" :section='"tracks"'/>
-      <BlockTiles class="albumPosts" :posts="this.$store.state.albumPosts" :section='"albums"'/>
-      <BlockTiles class="radioPosts" :posts="this.$store.state.radioPosts" :section='"radio"'/>
+      <BlockTiles class="trackPosts" :posts="trackPosts" :section='"tracks"'/>
+      <BlockTiles class="albumPosts" :posts="albumPosts" :section='"albums"'/>
+      <BlockTiles class="radioPosts" :posts="radioPosts" :section='"radio"'/>
   </div>
 </template>
 
@@ -12,19 +12,16 @@ import wp from '~/lib/wp'
 
 export default {
   // GET Data before loading components
-//   async asyncData ({ params }) {
-//     const page = 1;
-//     const [trackPosts, albumPosts, radioPosts] = await Promise.all([
-//         // wp.trackPosts(page),
-//         wp.albumPosts(page),
-//         wp.radioPosts(page)
-//       ])
-//     return {
-//     //   trackPosts,
-//       albumPosts,
-//       radioPosts,
-//     }
-//   },
+  async asyncData ({ params }) {
+    const page = 1;
+    const[trackPosts, albumPosts, radioPosts] = await wp.initialPosts()
+
+    return {
+      trackPosts,
+      albumPosts,
+      radioPosts,
+    }
+  },
   components: {
     BlockTiles
   }

@@ -39,35 +39,17 @@ import wp from '~/lib/wp'
     // import { eventBus } from '../../components/eventBus/eventBus';
 
     export default {
-
-        // created() {
-        //     window.addEventListener('scroll', this.changeURL);
-        //     if(window.innerWidth >= 960 ){
-        //         window.addEventListener('scroll', this.parallax );
-        //     }
-        //     // re
-        //     window.onresize = () => {
-        //         // toggle scroll event listener for parallax
-        //         if(window.innerWidth >= 960) {
-        //             window.addEventListener('scroll', this.parallax );
-        //          } else { 
-        //             window.removeEventListener('scroll', this.parallax );
-        //             // remove transformation
-        //             [...this.$el.querySelectorAll('.post-content__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-        //             [...this.$el.querySelectorAll('.post-details__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-        //          };
-        //     }
-        // },
-        data () {
+        async asyncData ({ params }) {
+            const posts = [await wp.getPost(params.track)]
             return {
-                posts: []
+                posts
             }
         },
-
-        created () {
-            this.posts.push(this.$store.getters.getTrackBySlug(this.$route.path))
+        // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
+        mounted () {
+            this.windowResize();
+            this.windowScroll();
         },
-
         methods: {
             // Determine if central element is in the viewport
             isInViewportSingle: function(element) {
@@ -118,6 +100,25 @@ import wp from '~/lib/wp'
                 let midEl = (rect.top + rect.bottom) / 2;
                 const ratio = (midEl - midViewPort)/midViewPort;
                 return ratio
+            },
+            windowResize() {
+                window.onresize = () => {
+                    // toggle scroll event listener for parallax
+                    if(window.innerWidth >= 960) {
+                        window.addEventListener('scroll', this.parallax );
+                    } else { 
+                        window.removeEventListener('scroll', this.parallax );
+                        // remove transformation
+                        [...this.$el.querySelectorAll('.post-content__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
+                        [...this.$el.querySelectorAll('.post-details__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
+                    };
+                }
+            },
+            windowScroll() {
+                window.addEventListener('scroll', this.changeURL);
+                if(window.innerWidth >= 960 ){
+                    window.addEventListener('scroll', this.parallax );
+                }
             }
         },
         destroyed() {
@@ -244,9 +245,7 @@ $image-xl: 512px;
         grid-gap: 16px;
         .post-content__container {
             margin-left: 0;
-            p {
                 font-size: 12pt;
-            }
         }
     }
 }
@@ -262,12 +261,10 @@ $image-xl: 512px;
             margin-left: 48px;
             border-bottom: none;
             padding-bottom: 0;
-            p {
                 font-size: 10.5pt;
                 max-height: $image-lg;
                 overflow: scroll;
                 padding-right: 8px;
-            }
         }
     }
 }
@@ -277,10 +274,8 @@ $image-xl: 512px;
         grid-template-columns: 1fr 384px $image-xl 384px 1fr;
         .post-content__container {
             margin-left: 64px;
-            p {
                 font-size: 12pt;
                 max-height: $image-xl;
-            }
         }
         .post-details h3 {
             font-size: 36pt;
