@@ -60,7 +60,6 @@ import wp from '~/lib/wp'
         async fetch ({ store, params }) {
             if (!store.getters.checkTrackBySlug(params)) {
                 const data = await wp.getPost(params.track)
-                console.log(data);
                 store.dispatch('addPostData', data)
             }
         },
