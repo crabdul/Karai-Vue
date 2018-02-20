@@ -7,8 +7,6 @@
 <script>
 import wp from '~/lib/wp'
 import Post from '~/components/post/Post.vue'
-    // import { eventBus } from '../../components/eventBus/eventBus';
-
     export default {
         components: {
             Post
@@ -118,12 +116,9 @@ import Post from '~/components/post/Post.vue'
             window.removeEventListener('scroll', this.changeURL)
             window.removeEventListener('scroll', this.parallax)
             window.removeEventListener('scroll', this.infiniteScroll)
-
         }
     }
-
 </script>
-
 
 <style lang="scss" scoped>
 

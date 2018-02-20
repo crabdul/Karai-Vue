@@ -12,7 +12,7 @@ import InfinityContainer from '~/components/post/InfinityContainer.vue'
             InfinityContainer
         },
         async asyncData ({ params }) {
-            const post = [await wp.getPost(params.track)]
+            const post = [await wp.getPost(params.album)]
             return {
                 post
             }
