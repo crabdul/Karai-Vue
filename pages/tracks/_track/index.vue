@@ -1,6 +1,6 @@
 <template>
-    <div id="posts">
-        <div class="post" :id="'post__'+index" v-for="(post, index) in posts" :key="index">
+    <div class="infinity-container">
+        <div class="post" :id="'post__'+(index+1)" v-for="(post, index) in posts" :key="index">
             <div class="post-details__container">
                 <div class="post-details">
                     <h3>{{ post.acf.title }} </h3>
@@ -39,6 +39,11 @@ import wp from '~/lib/wp'
     // import { eventBus } from '../../components/eventBus/eventBus';
 
     export default {
+        data () {
+            return {
+                postCount: 1
+            }
+        },
         async asyncData ({ params }) {
             const posts = [await wp.getPost(params.track)]
             return {
@@ -49,6 +54,7 @@ import wp from '~/lib/wp'
         mounted () {
             this.windowResize();
             this.windowScroll();
+            this.infiniteScroll();
         },
         methods: {
             // Determine if central element is in the viewport
@@ -64,14 +70,14 @@ import wp from '~/lib/wp'
                 return  rect.bottom >= 0 && rect.top <= ( window.innerHeight || html.clientHeight); 
             },
             changeURL: function() {
-                [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
-                    if (this.isInViewportSingle(post)) {
-                        const slug = this.posts[index].field_slug[0].value;
-                        this.$router.replace({
-                            path: `/posts/${slug}`
-                        })
-                    }
-                });
+                // [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
+                //     if (this.isInViewportSingle(post)) {
+                //         const slug = this.posts[index].slug;
+                //         this.$router.replace({
+                //             path: `/posts/${slug}`
+                //         })
+                //     }
+                // });
             },
             playSong: function(songInfo) {
                 // if(eventBus.firstPlayer) {
@@ -87,7 +93,6 @@ import wp from '~/lib/wp'
                 [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
                     if (this.isInViewport(post)) {
                         const ratio = this.getParallaxRatio(post);
-                        console.log(ratio);
                         post.querySelector('.post-content__container').style.transform = `matrix(1, 0, 0, 1, 0, ${ratio * 40})`;
                         post.querySelector('.post-details__container').style.transform = `matrix(1, 0, 0, 1, 0, ${ratio * 40})`;
                     }
@@ -114,16 +119,41 @@ import wp from '~/lib/wp'
                     };
                 }
             },
-            windowScroll() {
-                window.addEventListener('scroll', this.changeURL);
-                if(window.innerWidth >= 960 ){
-                    window.addEventListener('scroll', this.parallax );
+            
+            windowScroll () {
+                window.addEventListener( 'scroll', this.changeURL)
+                if (window.innerWidth >= 960){
+                    window.addEventListener( 'scroll', this.parallax )
+                }
+                window.addEventListener( 'scroll', this.infiniteScroll)
+
+            },
+            infiniteScroll () {
+                const posts = this.$el.querySelectorAll('.post')
+                const lastPost = posts[posts.length - 1]
+                console.log(lastPost.id.split('__')[1]);
+                console.log(this.postCount);
+                if (this.isInViewport(lastPost) && (lastPost.id.split('__')[1] == this.postCount)) {
+                    window.removeEventListener('scroll', this.infiniteScroll)
+                    this.getNextPost();
+                }
+            },
+            getNextPost () {
+                const nextPostId  = this.posts[this.posts.length - 1].next_post
+                if(nextPostId) {
+                    wp.getPostById(nextPostId)
+                    .then(post => {
+                        this.posts.push(post)
+                        this.postCount++
+                        window.addEventListener( 'scroll', this.infiniteScroll)
+                    })
                 }
             }
         },
         destroyed() {
-            window.removeEventListener('scroll', this.changeURL);
-            window.removeEventListener('scroll', this.parallax);
+            window.removeEventListener('scroll', this.changeURL)
+            window.removeEventListener('scroll', this.parallax)
+            window.removeEventListener('scroll', this.infiniteScroll)
 
         },
         beforeRouteUpdate(to, from, next) {
@@ -145,7 +175,7 @@ $screen-m: 512px;
 $image-lg: 384px;
 $image-xl: 512px;
 
-#posts {
+.infinity-container {
     position: relative;
     z-index: 1;
     color: white;
