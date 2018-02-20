@@ -9,7 +9,8 @@
                         <h4 class="post-details__date">{{ post.acf.date }} </h4>
                     </div>
                 </div>
-                <PostPlay :post="post.acf"/>
+                <PostPlay :post="post.acf" v-if="category === 'tracks'"/>
+                <PostPlayAlbum :post="post.acf" v-if="category === 'albums'"/>
             </div>
             <div class="post-image__container">
                 <div class="post-image">
@@ -28,14 +29,17 @@
 
 <script>
 import PostPlay from '~/components/post/PostPlay.vue'
+import PostPlayAlbum from '~/components/post/PostPlayAlbum.vue'
 
 export default {
   props: {
-      post: {type: Object},
-      index: {type: Number}
+      post: { type: Object },
+      category: { type: String },
+      index: { type: Number }
   },
   components: {
-      PostPlay
+      PostPlay,
+      PostPlayAlbum
   }
 }
 </script>

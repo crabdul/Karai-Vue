@@ -8,8 +8,8 @@
     </nuxt-link>
     <ul class="items">
       <li v-for="post in posts" :key="post.id">
-        <BlockTile :post="post" class="item" v-if="section === 'tracks' || section === 'albums'"/>
-        <RadioTile :post="post" class="item" v-if="section === 'radio'"/>
+        <BlockTile :post="post" :category="section" class="item" v-if="section === 'tracks' || section === 'albums'"/>
+        <RadioTile :post="post" :category="section" class="item" v-if="section === 'radio'"/>
       </li>
     </ul>
   </section>

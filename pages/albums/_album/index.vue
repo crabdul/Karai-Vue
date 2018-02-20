@@ -1,6 +1,6 @@
 <template>
     <div>
-        <infinity-container :posts="post"/>
+        <infinity-container :posts="post" :category="'albums'"/>
     </div>
 </template>
 

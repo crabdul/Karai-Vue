@@ -1,6 +1,6 @@
 <template>
     <div class="infinity-container">
-        <Post :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
+        <Post :category="category" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
     </div>
 </template>
 
@@ -12,7 +12,8 @@ import Post from '~/components/post/Post.vue'
             Post
         },
         props: {
-            posts: { type: Array}
+            posts: { type: Array },
+            category: { type: String }
         },
         data () {
             return {
@@ -48,7 +49,7 @@ import Post from '~/components/post/Post.vue'
                 [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
                     if (this.isInViewportSingle(post)) {
                         const slug = this.posts[index].slug;
-                        history.pushState(null, null, `/tracks/${slug}`)
+                        history.pushState(null, null, `/${this.category}/${slug}`)
                         this.currentPost = index
                     }
                 });

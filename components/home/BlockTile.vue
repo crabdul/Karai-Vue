@@ -1,7 +1,7 @@
 <template>
   <div>
     <nuxt-link 
-      :to="`tracks/${post.slug}`"
+      :to="`${category}/${post.slug}`"
       class="item" >
       <div class="img-container">
         <img :src="post.acf.cover_art" :alt="'post.acf.title post.acf.artist'">
@@ -18,7 +18,8 @@
 <script>
 export default {
   props: {
-    post: { type: Object }
+    post: { type: Object },
+    category: { type: String }
   }
 }
 </script>
