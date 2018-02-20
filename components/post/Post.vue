@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="post">
         <div class="post-details__container">
                 <div class="post-details">
                     <h3>{{ post.acf.title }} </h3>

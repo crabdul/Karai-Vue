@@ -1,6 +1,6 @@
 <template>
     <div class="infinity-container">
-        <Post class="post" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
+        <Post :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
     </div>
 </template>
 
@@ -18,7 +18,13 @@ import Post from '~/components/post/Post.vue'
         },
         data () {
             return {
-                postCount: 1
+                postCount: 1,
+                currentPost: 0
+            }
+        },
+        head () {
+            return {
+                title: `${this.posts[this.currentPost].acf.title} - ${this.posts[this.currentPost].acf.artist} | Karai Music`
             }
         },
         // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
@@ -45,6 +51,7 @@ import Post from '~/components/post/Post.vue'
                     if (this.isInViewportSingle(post)) {
                         const slug = this.posts[index].slug;
                         history.pushState(null, null, `/tracks/${slug}`)
+                        this.currentPost = index
                     }
                 });
             },
