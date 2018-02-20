@@ -1,15 +1,9 @@
 <template>
-  <section class="container">
-    <div>
-      <BlockTiles :posts="trackPosts" />
-    </div>
-    <div>
-      <BlockTiles :posts="albumPosts" />
-    </div>
-    <div>
-      <BlockTiles :posts="radioPosts" />
-    </div>
-  </section>
+  <div class="container">
+      <BlockTiles class="trackPosts" :posts="trackPosts" :section='"tracks"'/>
+      <BlockTiles class="albumPosts" :posts="albumPosts" :section='"albums"'/>
+      <BlockTiles class="radioPosts" :posts="radioPosts" :section='"radio"'/>
+  </div>
 </template>
 
 <script>
@@ -20,11 +14,8 @@ export default {
   // GET Data before loading components
   async asyncData ({ params }) {
     const page = 1;
-    const [trackPosts, albumPosts, radioPosts] = await Promise.all([
-        wp.trackPosts(page),
-        wp.albumPosts(page),
-        wp.radioPosts(page)
-      ])
+    const[trackPosts, albumPosts, radioPosts] = await wp.initialPosts()
+
     return {
       trackPosts,
       albumPosts,
@@ -37,10 +28,41 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
+$screen-lg: 1024px;
+$screen-m: 512px;
+
+// Grid styling
 .container {
-  margin: 1rem auto;
-  width: 90%;
-  max-width: 900px;
+    display: grid;
+    grid-template-columns: 32px 1fr 32px;
+    grid-template-areas: '. tracks .' '. albums .' '. radio .';
+
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    color: white;
+
+}
+.trackPosts {
+    grid-area: tracks;
+}
+.albumPosts {
+    grid-area: albums;
+}
+.radioPosts {
+  grid-area: radio;
+}
+
+@media screen and (min-width: $screen-m) {
+    .container {
+        grid-template-columns: 1fr $screen-m 1fr;
+    }
+}
+
+@media screen and (min-width: $screen-lg ) {
+    .container {
+        grid-template-columns: 1fr $screen-lg 1fr;
+    }
 }
 </style>

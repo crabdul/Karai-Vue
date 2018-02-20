@@ -1,52 +1,75 @@
 <template>
-  <div>
+  <div class="">
+    <app-header/>
     <nuxt/>
+    <appFooter/>
   </div>
 </template>
 
+<script>
+import Header from '@/components/shared/Header.vue';
+// import Player from './components/shared/Player.vue';
+import Footer from '@/components/shared/Footer.vue';
+// import { eventBus } from './components/eventBus/eventBus';
+
+
+export default {
+  components: {
+    appHeader: Header,
+    // appPlayer: Player,
+    appFooter: Footer,
+  },
+  // data() {
+  //   return {
+  //     showPlayer: false,
+  //   }
+  // },
+  // created() {
+  //   eventBus.$on('showPlayer', (showPlayer) => {
+  //     this.showPlayer = showPlayer;
+  //   });
+  // },
+}
+</script>
+
+
 <style>
-html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+body {
+    background-color: #111111;
+}
+.spacer {
+  min-height:  92vh;
 }
 
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .3s ease-out;
+}
+.fade-enter {
+  transform: translate3d(-96px,0,0);
+  opacity: 0;
+}
+.fade-enter-to {
+  transform: translate3d(0,0,0);
+  opacity: 1;
+}
+.fade-leave {
+  transform: translate3d(0,0,0);
+  opacity: 1;
+}
+.fade-leave-to {
+  transform: translate3d(96px,0,0);
+  opacity: 0;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+.slide-enter-active, 
+.slide-leave-active {
+  transition: all 0.3s ease-in-out;
 }
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+.slide-enter {
+  transform: translate3d(0,96px,0);
 }
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.slide-leave-to {
+  transform: translate3d(0,96px,0);
 }
 </style>
