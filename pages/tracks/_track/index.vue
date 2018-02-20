@@ -36,7 +36,7 @@ import Post from '~/components/post/Post.vue'
             isInViewportSingle: function(element) {
                 var rect = element.getBoundingClientRect();
                 var html = document.documentElement;
-                return  rect.bottom <= ( window.innerHeight || html.clientHeight) && rect.top >= 0; 
+                return  rect.bottom <= ( window.innerHeight + 100 || html.clientHeight + 100) && rect.top >= 0; 
             },
             // Determine if element is in the viewport
             isInViewport: function(element) {
@@ -48,9 +48,7 @@ import Post from '~/components/post/Post.vue'
                 [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
                     if (this.isInViewportSingle(post)) {
                         const slug = this.posts[index].slug;
-                        this.$router.replace({
-                            path: `/tracks/${slug}`
-                        })
+                        history.pushState(null, null, `/tracks/${slug}`)
                     }
                 });
             },
@@ -105,10 +103,7 @@ import Post from '~/components/post/Post.vue'
             },
             infiniteScroll () {
                 const posts = this.$el.querySelectorAll('.post')
-                console.log(posts);
                 const lastPost = posts[posts.length - 1]
-                console.log('lastPost '+lastPost.id.split('__')[1]);
-                console.log(this.postCount);
                 if (this.isInViewport(lastPost) && (lastPost.id.split('__')[1] == this.postCount)) {
                     window.removeEventListener('scroll', this.infiniteScroll)
                     this.getNextPost();
@@ -131,10 +126,6 @@ import Post from '~/components/post/Post.vue'
             window.removeEventListener('scroll', this.parallax)
             window.removeEventListener('scroll', this.infiniteScroll)
 
-        },
-        beforeRouteUpdate(to, from, next) {
-            this.$route.params.slug = '';
-            next();
         }
     }
 
