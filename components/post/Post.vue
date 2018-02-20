@@ -9,7 +9,7 @@
                         <h4 class="post-details__date">{{ post.acf.date }} </h4>
                     </div>
                 </div>
-                <PostPlay :post="post"/>
+                <PostPlay :post="post.acf"/>
             </div>
             <div class="post-image__container">
                 <div class="post-image">
@@ -95,23 +95,6 @@ $image-xl: 512px;
         }
         .post-details__date {
             color: #9E9E9E;
-        }
-    }
-}
-
-.post-youtube {
-    margin-top: 32px;
-    margin-bottom: 16px;
-    .post-youtube__play-button svg {
-        transition: all ease-in 0.1s; // circle colour
-        path {
-            stroke: #9E9E9E;
-        }
-        &:hover {
-            transform: scale(1.05);
-            path {
-                stroke: white;
-            }
         }
     }
 }

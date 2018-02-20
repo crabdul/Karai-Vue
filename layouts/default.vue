@@ -3,12 +3,13 @@
     <app-header/>
     <nuxt/>
     <appFooter/>
+    <app-player v-if="this.$store.getters.getPlayerState"/>
   </div>
 </template>
 
 <script>
 import Header from '@/components/shared/Header.vue';
-// import Player from './components/shared/Player.vue';
+import Player from '@/components/shared/Player.vue';
 import Footer from '@/components/shared/Footer.vue';
 // import { eventBus } from './components/eventBus/eventBus';
 
@@ -16,19 +17,9 @@ import Footer from '@/components/shared/Footer.vue';
 export default {
   components: {
     appHeader: Header,
-    // appPlayer: Player,
+    appPlayer: Player,
     appFooter: Footer,
   },
-  // data() {
-  //   return {
-  //     showPlayer: false,
-  //   }
-  // },
-  // created() {
-  //   eventBus.$on('showPlayer', (showPlayer) => {
-  //     this.showPlayer = showPlayer;
-  //   });
-  // },
 }
 </script>
 
@@ -37,6 +28,12 @@ export default {
 body {
     background-color: #111111;
 }
+
+.app-player {
+  position: fixed;
+  bottom: 0;
+}
+
 .spacer {
   min-height:  92vh;
 }

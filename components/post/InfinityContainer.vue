@@ -55,16 +55,6 @@ import Post from '~/components/post/Post.vue'
                     }
                 });
             },
-            playSong: function(songInfo) {
-                // if(eventBus.firstPlayer) {
-                    const showPlayer = true;
-                    eventBus.showPlayer(showPlayer);
-                    eventBus.firstPlayer = false;
-                // }
-                setTimeout(() => {
-                    eventBus.startPlayer(songInfo);
-                }, 10);
-            },
             parallax() {
                 [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
                     if (this.isInViewport(post)) {
