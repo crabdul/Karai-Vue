@@ -1,7 +1,7 @@
 <template>
     <div class="items">
         <nuxt-link 
-        :to="{ name: 'radio', query: post.acf.title }"
+        :to="{ name: 'radio', query: { playlist: post.acf.title }}"
         class="item" >
             <div class="img-container">            
                 <div class="playlist-img__box">
