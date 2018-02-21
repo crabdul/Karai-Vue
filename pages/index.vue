@@ -1,13 +1,16 @@
 <template>
   <div class="container">
-      <BlockTiles class="trackPosts" :posts="trackPosts" :section='"tracks"'/>
-      <BlockTiles class="albumPosts" :posts="albumPosts" :section='"albums"'/>
+      <BlockHero :post="trackPosts[0]" :section='"tracks"'/>
+      <BlockTiles class="trackPosts" :posts="trackPosts.slice(1,5)" :section='"tracks"'/>
+      <BlockHero :post="albumPosts[0]" :section='"albums"'/>
+      <BlockTiles class="albumPosts" :posts="albumPosts.slice(1,5)" :section='"albums"'/>
       <BlockTiles class="radioPosts" :posts="radioPosts" :section='"radio"'/>
   </div>
 </template>
 
 <script>
 import BlockTiles from '~/components/home/BlockTiles.vue'
+import BlockHero from '~/components/home/BlockHero.vue'
 import wp from '~/lib/wp'
 
 export default {
@@ -23,7 +26,8 @@ export default {
     }
   },
   components: {
-    BlockTiles
+    BlockTiles,
+    BlockHero
   }
 }
 </script>
@@ -35,10 +39,6 @@ $screen-m: 512px;
 
 // Grid styling
 .container {
-    display: grid;
-    grid-template-columns: 32px 1fr 32px;
-    grid-template-areas: '. tracks .' '. albums .' '. radio .';
-
     font-family: 'Lato', sans-serif;
     font-style: italic;
     color: white;
@@ -53,16 +53,15 @@ $screen-m: 512px;
 .radioPosts {
   grid-area: radio;
 }
+.hero {
+    grid-area: hero;
+}
 
 @media screen and (min-width: $screen-m) {
-    .container {
-        grid-template-columns: 1fr $screen-m 1fr;
-    }
+    
 }
 
 @media screen and (min-width: $screen-lg ) {
-    .container {
-        grid-template-columns: 1fr $screen-lg 1fr;
-    }
+
 }
 </style>

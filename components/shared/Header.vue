@@ -52,7 +52,7 @@ $min-width: 800px;
 
 #header {
     position: relative;
-    z-index: 2; // Order above content
+    z-index: 100; // Order above content
 }
 
 nav {

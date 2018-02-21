@@ -1,11 +1,5 @@
 <template>
   <section>
-    <nuxt-link 
-      :to="section" 
-      tag="div" 
-      class="section-header">
-      <h2 class="section-title">new {{ section }}</h2>
-    </nuxt-link>
     <ul class="items">
       <li v-for="post in posts" :key="post.id">
         <BlockTile :post="post" :category="section" class="item" v-if="section === 'tracks' || section === 'albums'"/>
@@ -36,24 +30,15 @@ export default {
 $screen-lg: 1024px;
 $screen-m: 512px;
 
-@media screen and (min-width: $screen-m) {
-    .items {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 64px;
-    }
-}
-
-@media screen and (min-width: $screen-lg ) {
-    .items {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 64px;
-    }
-}
-
 section {
-    margin: 32px 0;
+    padding: 64px 0;
+    background-color: #111111;
+    position: relative;
+    z-index: 20;
+
+    ul {
+      margin: 0 32px;
+    }
     .section-header {
         display: flex;
         align-items: center;
@@ -68,5 +53,30 @@ section {
         }
     }
 }
+
+@media screen and (min-width: $screen-m) {
+    .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 64px;
+    }
+    section ul {
+      margin: 0 64px;
+    }
+}
+
+@media screen and (min-width: $screen-lg ) {
+    .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 64px;
+    }
+    section ul {
+      margin: 0 96px;
+    }
+}
+
+
+
 
 </style>
