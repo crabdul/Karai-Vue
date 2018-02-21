@@ -3,10 +3,10 @@
         <div class="post-details__container">
                 <div class="post-details">
                     <h3>{{ post.acf.title }} </h3>
-                    <h3 class="post-details__artist">{{ author }} </h3>
+                    <h3 class="post-details__artist">{{ post.acf.artist }} </h3>
                     <div class="post-details__meta">
                         <h4 class="post-details__author">BY: {{ author }}</h4>
-                        <h4 class="post-details__date">{{ post.acf.date }} </h4>
+                        <h4 class="post-details__date">{{ date }} </h4>
                     </div>
                 </div>
                 <PostPlay :post="post.acf" v-if="category === 'tracks'"/>
@@ -43,9 +43,12 @@ export default {
       PostPlayAlbum
   },
   computed: {
-      author () {
-          return util.getAuthor(this.post.author)
-      }
+        author () {
+            return util.getAuthor(this.post.author)
+        },
+        date () {
+            return util.getDate(this.post.date)
+        }
   }
 }
 </script>

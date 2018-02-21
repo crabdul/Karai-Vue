@@ -17,7 +17,7 @@
         <div class="post">
             <div class="post__meta mv-16">
                 <div class="post__author">By: {{ author }} </div>
-                <div class="post__date">{{ post.acf.date }} </div>
+                <div class="post__date">{{ date }} </div>
             </div>
             <div class="post__cover-art mv-16">
                 <img :src="post.acf.cover_art" alt="">
@@ -43,6 +43,9 @@ export default {
     computed: {
         author () {
             return util.getAuthor(this.post.author)
+        },
+        date () {
+            return util.getDate(this.post.date)
         }
   }
 }
@@ -92,7 +95,7 @@ export default {
         object-fit: cover;
         width: 100%;
         height: 100%;
-        filter: blur(8px);
+        filter: blur(32px);
 
     }
 }

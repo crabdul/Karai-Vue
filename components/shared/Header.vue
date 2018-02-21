@@ -74,7 +74,7 @@ nav {
         font-size: 28pt;
         color: black;
         display: inline-flex;
-        text-shadow: -0.06em 0 red, 0.06em 0 lavenderblush;
+        text-shadow: -0.06em 0 red, 0.06em 0 cyan;
         cursor: pointer;
     }
 }
