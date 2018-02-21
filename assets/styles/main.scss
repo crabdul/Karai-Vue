@@ -2,3 +2,26 @@
 @import 'mixins';
 @import 'fonts';
 @import 'reset';
+
+// NUXT TRANSITIONS
+
+.page-enter-active,
+.page-leave-active {
+  transition: all .3s ease-out;
+}
+.page-enter {
+  transform: translate3d(-96px,0,0);
+  opacity: 0;
+}
+.page-enter-to {
+  transform: translate3d(0,0,0);
+  opacity: 1;
+}
+.page-leave {
+  transform: translate3d(0,0,0);
+  opacity: 1;
+}
+.page-leave-to {
+  transform: translate3d(96px,0,0);
+  opacity: 0;
+}
