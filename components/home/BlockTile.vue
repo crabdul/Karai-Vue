@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="item">
     <nuxt-link 
       :to="`${category}/${post.slug}`"
       >
