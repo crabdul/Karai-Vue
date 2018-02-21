@@ -13,7 +13,6 @@ import util from '~/lib/util'
 export default {
     // GET Data before loading components
     async asyncData ({ params }) {
-        const page = 1;
         const posts = await wp.getTrackPosts(1,12)
         return {
             posts
@@ -21,6 +20,29 @@ export default {
     },
     components: {
         BlockTiles
+    },
+    data () {
+        return {
+            page: 2
+        }
+    },
+    mounted () {
+        document.addEventListener('scroll', this.checkBottomReached)
+    },
+    methods: {
+        checkBottomReached () {
+            const e = document.querySelector('.items').lastChild
+            if (util.isInViewport(e)) {
+                document.removeEventListener('scroll', this.checkBottomReached)
+                wp.getTrackPosts(this.page, 12)
+                .then( posts => {
+                    posts.forEach(post => this.posts.push(post))
+                    this.page++
+                    document.addEventListener('scroll', this.checkBottomReached)
+                })
+                .catch(e => document.removeEventListener('scroll', this.checkBottomReached))
+            }
+        }
     }
 }
 </script>

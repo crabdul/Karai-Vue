@@ -18,7 +18,6 @@ export default {
   },
   methods: {
       playSong: function(index) {
-          console.log(this.post);
         this.$store.dispatch('songData', {
             title: this.post.songs[index].song_title,
             artist: this.post.artist,

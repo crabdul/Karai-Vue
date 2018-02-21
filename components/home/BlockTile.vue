@@ -2,7 +2,7 @@
   <div>
     <nuxt-link 
       :to="`${category}/${post.slug}`"
-      class="item" >
+      >
       <div class="img-container">
         <img :src="post.acf.cover_art" :alt="'post.acf.title post.acf.artist'">
       </div>
