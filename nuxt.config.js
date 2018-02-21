@@ -41,6 +41,18 @@ module.exports = {
   loading: {color: '#E91E63'},
   generate: {
     fallback: true,
+  },
+  sitemap: {
+    hostname: 'https://karaimusic.com',
+    generate: true,
+    routes () {
+      return axios.all([
+        axios.get('https://karaimusic.co.uk/wp-json/wp/v2/posts?categories=2'),
+        axios.get('https://karaimusic.co.uk/wp-json/wp/v2/posts?categories=3')
+      ])
+      .then(axios.spread((tracksRes, albumsRes) => {
+        return [...tracksRes.data.map(track =>  '/tracks/' + track.slug),...albumsRes.data.map(album =>  '/albums/' + album.slug)]
+      }))
+    }
   }
-
 }
