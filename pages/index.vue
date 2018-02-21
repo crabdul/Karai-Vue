@@ -4,6 +4,14 @@
       <BlockTiles class="trackPosts" :posts="trackPosts.slice(1,5)" :section='"tracks"'/>
       <BlockHero :post="albumPosts[0]" :section='"albums"'/>
       <BlockTiles class="albumPosts" :posts="albumPosts.slice(1,5)" :section='"albums"'/>
+      <div class="header-container mv-16">
+          <nuxt-link 
+          :to="'radio'" 
+          tag="div" 
+          class="header">
+              <h2>karai radio</h2>
+          </nuxt-link>
+      </div>
       <BlockTiles class="radioPosts" :posts="radioPosts" :section='"radio"'/>
   </div>
 </template>
@@ -33,6 +41,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import 'assets/styles/util.scss';
 
 $screen-lg: 1024px;
 $screen-m: 512px;
@@ -56,12 +65,37 @@ $screen-m: 512px;
 .hero {
     grid-area: hero;
 }
-
-@media screen and (min-width: $screen-m) {
-    
+.header-container {
+    margin-left: $margin-s;
+    margin-right: $margin-s;
+    display: grid;
+    align-content: center;
+}
+.header {
+    padding: 8px 0;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    h2 {
+        font-size: 24pt;
+    }
+    &:hover {
+        h2 {
+            color: $pink-500;
+        }
+    }
 }
 
-@media screen and (min-width: $screen-lg ) {
+@media screen and (min-width: $screen-m) {
+    .header-container {
+        margin-left: $margin-m;
+        margin-right: $margin-m;
+    }
+}
 
+@media screen and (min-width: $screen-lg) {
+    .header-container {
+        margin-left: $margin-lg;
+        margin-right: $margin-lg;
+    }
 }
 </style>
