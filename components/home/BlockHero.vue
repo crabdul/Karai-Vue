@@ -69,7 +69,7 @@ export default {
     }
     &:hover {
         h2 {
-            color: #E91E63;
+            color: $pink-500;
         }
     }
 }
@@ -86,6 +86,7 @@ export default {
         width: 100%;
         height: 100%;
         filter: blur(8px);
+
     }
 }
 
@@ -99,7 +100,7 @@ export default {
 
     &:hover {
         .post__title {
-            color: #E91E63;
+            color: $pink-500;
         }
     }
 }
@@ -127,6 +128,8 @@ export default {
 
     img {
         width: 100%;
+                box-shadow: 0 8px 6px -6px black;
+
     }
 }
 
