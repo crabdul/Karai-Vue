@@ -1,25 +1,32 @@
 <template>
-  <div>
+  <div class="item">
     <nuxt-link 
       :to="`${category}/${post.slug}`"
-      class="item" >
+      >
       <div class="img-container">
         <img :src="post.acf.cover_art" :alt="'post.acf.title post.acf.artist'">
       </div>
       <div class="info">
         <h3 class="title"> {{ post.acf.title }} </h3>
         <h3 class="artist">{{ post.acf.artist }} </h3>
-        <h4 class="date">{{ post.acf.date }}</h4>
+        <h4 class="date">{{ date }}</h4>
       </div>
     </nuxt-link>
   </div>
 </template>
 
 <script>
+import util from '~/lib/util'
+
 export default {
   props: {
     post: { type: Object },
     category: { type: String }
+  },
+  computed: {
+        date () {
+            return util.getDate(this.post.date)
+        }
   }
 }
 </script>

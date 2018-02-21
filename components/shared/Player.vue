@@ -218,7 +218,7 @@ export default {
     #player {
         position: fixed;
         bottom: 0;
-        z-index: 3;
+        z-index: 99;
         width: 100%;
         font-family: 'Lato', sans-serif;
     }
