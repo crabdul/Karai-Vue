@@ -16,7 +16,7 @@
         :to="`${section}/${post.slug}`">
         <div class="post">
             <div class="post__meta mv-16">
-                <div class="post__author">By: {{ post.author }} </div>
+                <div class="post__author">By: {{ author }} </div>
                 <div class="post__date">{{ post.acf.date }} </div>
             </div>
             <div class="post__cover-art mv-16">
@@ -33,10 +33,17 @@
 </template>
 
 <script>
+import util from '~/lib/util'
+
 export default {
   props: {
       post: { type: Object },
       section: { type: String }
+  },
+    computed: {
+        author () {
+            return util.getAuthor(this.post.author)
+        }
   }
 }
 </script>
