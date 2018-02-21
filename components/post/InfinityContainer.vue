@@ -47,7 +47,7 @@ import Post from '~/components/post/Post.vue'
             },
             changeURL: function() {
                 [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
-                    if (this.isInViewportSingle(post)) {
+                    if (this.isInViewportSingle(post) && (index !== this.currentPost)) {
                         const slug = this.posts[index].slug;
                         history.pushState(null, null, `/${this.category}/${slug}`)
                         this.currentPost = index
