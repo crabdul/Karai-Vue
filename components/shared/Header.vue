@@ -1,11 +1,11 @@
 <template>
     <div id="header">
         <nav>
-            <router-link to="/" class="text-logo__container" tag="div">
+            <nuxt-link to="/" class="text-logo__container" tag="div">
                 <div class="text-logo" @click="closeMenu()">
                     <h1>karai music</h1>
                 </div>
-            </router-link>
+            </nuxt-link>
             <div class="menu">
                 <div class="menu__button">
                         <div class="menu__button-open"  @click="toggleNav()">
@@ -20,9 +20,9 @@
                 </div>
                 <div class="menu__list">
                     <ul @click="toggleNav()">
-                        <nuxt-link :to="'/tracks/'" tag="li"><div class="menu__item">new tracks</div></nuxt-link>
-                        <nuxt-link :to="'/albums/'" tag="li"><div class="menu__item">new albums</div></nuxt-link>
-                        <nuxt-link :to="'/radio'" tag="li"><div class="menu__item">radio</div></nuxt-link>
+                        <nuxt-link :to="'tracks'" tag="li"><div class="menu__item">new tracks</div></nuxt-link>
+                        <nuxt-link :to="'albums'" tag="li"><div class="menu__item">new albums</div></nuxt-link>
+                        <nuxt-link :to="'radio'" tag="li"><div class="menu__item">radio</div></nuxt-link>
                     </ul>
                 </div>
             </div>
