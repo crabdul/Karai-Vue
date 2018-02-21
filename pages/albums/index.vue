@@ -1,6 +1,6 @@
 <template>
-  <div class="tracks">
-      <block-tiles :posts="posts" :section="'tracks'"/>
+  <div class="albums">
+      <block-tiles :posts="posts" :section="'albums'"/>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import util from '~/lib/util'
 export default {
     // GET Data before loading components
     async asyncData ({ params }) {
-        const posts = await wp.getTrackPosts(1,12)
+        const posts = await wp.getAlbumPosts(1,12)
         return {
             posts
         }
@@ -38,7 +38,7 @@ export default {
         },
         getNewPosts () {
             document.removeEventListener('scroll', this.checkBottomReached)
-            wp.getTrackPosts(this.page, 12)
+            wp.getAlbumPosts(this.page, 12)
             .then( posts => {
                 posts.forEach(post => this.posts.push(post))
                 this.page++
@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
 
-.tracks {
+.albums {
     font-family: 'Lato', sans-serif;
 }
 
