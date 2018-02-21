@@ -11,7 +11,6 @@
 import Header from '@/components/shared/Header.vue';
 import Player from '@/components/shared/Player.vue';
 import Footer from '@/components/shared/Footer.vue';
-// import { eventBus } from './components/eventBus/eventBus';
 
 
 export default {

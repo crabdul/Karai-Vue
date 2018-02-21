@@ -38,6 +38,6 @@ module.exports = {
   ** Base styles
   */
   css: ['@/assets/styles/main.scss'],
-  loading: {color: 'E91E63'}
+  loading: {color: '#E91E63'}
 
 }
