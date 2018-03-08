@@ -148,6 +148,10 @@ $image-xl: 512px;
                 font-size: 12pt;
         }
     }
+    .post-content {
+        // prevents text from being cropped
+        position: absolute;
+    }
 }
 
 @media screen and (min-width: $screen-lg) {
