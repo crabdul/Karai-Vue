@@ -43,6 +43,15 @@
             isFadingOut: false,
         }
     },
+    head () {
+        return {
+            meta: [
+                { property: 'og:url', content: 'https://karaimusic.com/radio/'},
+                { property: 'og:description', content: 'Latest playlists'},
+                { property: 'og:title', content: 'Karai Music | New Playlists'}
+            ]
+        }
+    },
     methods: {
         changePlaylist(playlist) {
             this.playingId = playlist.acf.spotify_id

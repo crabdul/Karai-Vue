@@ -21,6 +21,16 @@ export default {
     components: {
         BlockTiles
     },
+    head () {
+        return {
+            meta: [
+                { hid: 'og:url', property: 'og:url', content: 'https://karaimusic.com/albums/'},
+                { hid: 'og:description', property: 'og:description', content: 'Latest albums released'},
+                { hid: 'og:title', property: 'og:title', content: 'Karai Music | New Albums'},
+                { property: 'og:type', content: 'object' }
+            ]
+        }
+    },
     data () {
         return {
             page: 2

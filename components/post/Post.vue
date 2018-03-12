@@ -33,23 +33,46 @@ import PostPlay from '~/components/post/PostPlay.vue'
 import PostPlayAlbum from '~/components/post/PostPlayAlbum.vue'
 
 export default {
-  props: {
-      post: { type: Object },
-      category: { type: String },
-      index: { type: Number }
-  },
-  components: {
-      PostPlay,
-      PostPlayAlbum
-  },
-  computed: {
-        author () {
+    data () {
+        return {
+            description: ''
+        }
+    },
+    props: {
+        post: {
+            type: Object
+        },
+        category: {
+            type: String
+        },
+        index: {
+            type: Number
+        }
+    },
+    head () {
+        return {
+        meta: [
+            { hid: 'description', name: 'description', content: this.description },
+            { hid: 'og:description', property: 'og:description', content: this.description },
+            { property: 'og:type', content: 'article' },
+            { hid: 'og:title', property: 'og:title', content: this.post.acf.abstract },
+            { property: 'og:image', content: this.post.acf.cover_art },
+            { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.post.slug}`}
+        ]
+        }
+    },
+    components: {
+        PostPlay,
+        PostPlayAlbum
+    },
+    computed: {
+        author() {
             return util.getAuthor(this.post.author)
         },
-        date () {
+        date() {
             return util.getDate(this.post.date)
         }
-  }
+    }
 }
 </script>
 
