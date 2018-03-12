@@ -6,8 +6,8 @@
                     <h1>karai music</h1>
                 </div>
             </nuxt-link>
-            <nav-menu/>
         </nav>
+        <nav-menu/>
     </div>
 </template>
 
@@ -40,9 +40,7 @@ nav {
 
 .text-logo__container {
     text-align: center;
-    display: grid;
     height: 100%;
-    align-items: center;
 
     h1 {
         font-family: 'Lato', sans-serif;

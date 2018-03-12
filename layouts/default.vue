@@ -1,6 +1,7 @@
 <template>
   <div class="">
-    <app-header/>
+    <!-- <app-header/> -->
+    <app-home-header v-if="['index'].indexOf($route.name) > -1"/>
     <nuxt/>
     <appFooter/>
     <app-player v-if="this.$store.getters.getPlayerState"/>
@@ -8,14 +9,16 @@
 </template>
 
 <script>
-import Header from '@/components/shared/Header.vue';
-import Player from '@/components/shared/Player.vue';
-import Footer from '@/components/shared/Footer.vue';
+import Header from '@/components/shared/Header.vue'
+import HomeHeader from '@/components/shared/HomeHeader.vue'
+import Player from '@/components/shared/Player.vue'
+import Footer from '@/components/shared/Footer.vue'
 
 
 export default {
   components: {
     appHeader: Header,
+    appHomeHeader: HomeHeader,
     appPlayer: Player,
     appFooter: Footer,
   },
