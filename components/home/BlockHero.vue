@@ -1,17 +1,20 @@
 <template>
 <div class="hero">
-    <div class="spread">
-        <img :src="post.acf.cover_art" alt="">
+    <div class="hero__bg">
+        <div class="spread">
+            <img :src="post.acf.cover_art" alt="">
+        </div>
+        <div class="shadow"></div>
     </div>
     <div class="hero__content">
-        <div class="hero__header-container mv-16">
+        <!-- <div class="hero__header-container mv-16">
             <nuxt-link 
             :to="section" 
             tag="div" 
             class="hero__header">
                 <h2>new {{ section }}</h2>
             </nuxt-link>
-        </div>
+        </div> -->
         <nuxt-link 
         :to="`${section}/${post.slug}`">
         <div class="post">
@@ -60,7 +63,7 @@ export default {
 }
 .hero__content {
     position: relative;
-    z-index: 5;
+    z-index: 20;
     height: 100%;
     display: grid;
 }
@@ -95,9 +98,18 @@ export default {
         object-fit: cover;
         width: 100%;
         height: 100%;
-        filter: blur(32px);
-
+        filter: blur(60px);
     }
+}
+
+.shadow {
+    z-index: 15;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.25);
+    width: 100%;
+    height: 100%;
 }
 
 .post {
@@ -169,7 +181,7 @@ a {
         margin-left: $margin-m;
         margin-right: $margin-m;
         grid-template-areas: 'meta art details';
-        grid-template-columns: 22% 23% 55%;
+        grid-template-columns: 25% 18% 57%;
     }
     .post__meta {
         justify-content: start;
