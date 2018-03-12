@@ -1,30 +1,30 @@
 <template>
   <div class="post">
         <div class="post-details__container">
-                <div class="post-details">
-                    <h3>{{ post.acf.title }} </h3>
-                    <h3 class="post-details__artist">{{ post.acf.artist }} </h3>
-                    <div class="post-details__meta">
-                        <h4 class="post-details__author">BY: {{ author }}</h4>
-                        <h4 class="post-details__date">{{ date }} </h4>
-                    </div>
-                </div>
-                <PostPlay :post="post.acf" v-if="category === 'tracks'"/>
-                <PostPlayAlbum :post="post.acf" v-if="category === 'albums'"/>
-            </div>
-            <div class="post-image__container">
-                <div class="post-image">
-                    <img :src="post.acf.cover_art" :alt="`${post.acf.title} ${post.acf.artist}`">
-                </div>
-                <div class="post-image__copyright">
-                    {{ post.acf.label }}
+            <div class="post-details">
+                <h3>{{ post.acf.title }} </h3>
+                <h3 class="post-details__artist">{{ post.acf.artist }} </h3>
+                <div class="post-details__meta">
+                    <h4 class="post-details__author">BY: {{ author }}</h4>
+                    <h4 class="post-details__date">{{ date }} </h4>
                 </div>
             </div>
-            <div class="post-content__container">
-                <div class="post-content" v-html="post.content.rendered">
-                </div>
+            <PostPlay :post="post.acf" v-if="category === 'tracks'"/>
+            <PostPlayAlbum :post="post.acf" v-if="category === 'albums'"/>
+        </div>
+        <div class="post-image__container">
+            <div class="post-image">
+                <img :src="post.acf.cover_art" :alt="decode(post.title.rendered)">
             </div>
-  </div>
+            <div class="post-image__copyright">
+                {{ post.acf.label }}
+            </div>
+        </div>
+        <div class="post-content__container">
+            <div class="post-content" v-html="post.content.rendered">
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -51,14 +51,14 @@ export default {
     },
     head () {
         return {
-        meta: [
-            { hid: 'description', name: 'description', content: this.description },
-            { hid: 'og:description', property: 'og:description', content: this.description },
-            { property: 'og:type', content: 'article' },
-            { hid: 'og:title', property: 'og:title', content: this.post.acf.abstract },
-            { property: 'og:image', content: this.post.acf.cover_art },
-            { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.post.slug}`}
-        ]
+            meta: [
+                { hid: 'description', name: 'description', content: this.description },
+                { hid: 'og:description', property: 'og:description', content: this.description },
+                { property: 'og:type', content: 'article' },
+                { hid: 'og:title', property: 'og:title', content: this.post.acf.abstract },
+                { property: 'og:image', content: this.post.acf.cover_art },
+                { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.post.slug}`}
+            ]
         }
     },
     components: {
@@ -66,13 +66,20 @@ export default {
         PostPlayAlbum
     },
     computed: {
-        author() {
+        author () {
             return util.getAuthor(this.post.author)
         },
-        date() {
+        date () {
             return util.getDate(this.post.date)
         }
-    }
+    },
+    methods: {
+        decode: function(str) {
+			return str.replace(/&#(\d+);/g, function(match, dec) {
+				return String.fromCharCode(dec);
+			});
+		}
+    },
 }
 </script>
 
