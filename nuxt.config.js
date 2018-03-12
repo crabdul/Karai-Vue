@@ -45,6 +45,7 @@ module.exports = {
     fallback: true,
   },
   modules: ['@nuxtjs/sitemap'],
+  generate: true,
       sitemap: {
           hostname: 'https://karaimusic.com',
           routes() {
