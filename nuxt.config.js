@@ -50,8 +50,8 @@ module.exports = {
       generate: true,
       routes() {
         return axios.all([
-          axios.get('https://karaimusic.co.uk/wp-json/wp/v2/posts?categories=2'),
-          axios.get('https://karaimusic.co.uk/wp-json/wp/v2/posts?categories=3')
+          axios.get('https://karaimusic.co.uk/wp-json/wp/v2/posts?categories=2&per_page=100'),
+          axios.get('https://karaimusic.co.uk/wp-json/wp/v2/posts?categories=3&per_page=100')
         ])
         .then(axios.spread((tracksRes, albumsRes) => {
           return [...tracksRes.data.map(track =>  '/tracks/' + track.slug),...albumsRes.data.map(album =>  '/albums/' + album.slug)]
