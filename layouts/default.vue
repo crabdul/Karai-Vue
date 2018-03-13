@@ -28,7 +28,8 @@ export default {
 
 <style>
 body {
-    background-color: #111111;
+    background-color: #f7f7f7;
+    color: #2b2b2b;
 }
 
 .app-player {

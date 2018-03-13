@@ -32,13 +32,10 @@ $screen-m: 512px;
 
 section {
     padding: 64px 0;
-    background-color: #111111;
+    background-color: #f7f7f7;;
     position: relative;
     z-index: 20;
 
-    ul {
-      margin: 0 32px;
-    }
     .section-header {
         display: flex;
         align-items: center;
@@ -66,19 +63,13 @@ section.radioPosts {
         grid-template-columns: 1fr 1fr;
         grid-gap: 64px;
     }
-    section ul {
-      margin: 0 64px;
-    }
 }
 
 @media screen and (min-width: $screen-lg ) {
     .items {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 64px;
-    }
-    section ul {
-      margin: 0 96px;
+        grid-gap: 40px;
     }
 }
 

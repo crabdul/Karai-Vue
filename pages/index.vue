@@ -1,24 +1,63 @@
 <template>
-  <div class="container">
-      <BlockHero :post="trackPosts[0]" :section='"tracks"'/>
-      <BlockTiles class="trackPosts" :posts="trackPosts.slice(1,5)" :section='"tracks"'/>
-      <BlockHero :post="albumPosts[0]" :section='"albums"'/>
-      <BlockTiles class="albumPosts" :posts="albumPosts.slice(1,5)" :section='"albums"'/>
-      <div class="header-container mv-16">
-          <nuxt-link 
-          :to="'radio'" 
-          tag="div" 
-          class="header">
-              <h2>karai radio</h2>
-          </nuxt-link>
-      </div>
-      <BlockTiles class="radioPosts" :posts="radioPosts" :section='"radio"'/>
-  </div>
+    <div id="home-page">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="block-row top-row">
+                    <div class="section-header">
+                        <nuxt-link 
+                        :to="'tracks'" 
+                        tag="div" 
+                        class="section-header__title">
+                            <p>best</p>
+                            <p>new</p>
+                            <p>tracks</p>
+                        </nuxt-link>
+                    </div>
+                    <Feature class="feature" :post="trackPosts[0]" :section='"tracks"'/>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <BlockTiles class="block-row track-posts" :posts="trackPosts.slice(1,5)" :section='"tracks"'/>
+            </div>
+            <div class="container-fluid">
+                <div class="block-row top-row">
+                    <div class="section-header">
+                        <nuxt-link 
+                        :to="'albums'" 
+                        tag="div" 
+                        class="section-header__title">
+                            <p>best</p>
+                            <p>new</p>
+                            <p>albums</p>
+                        </nuxt-link>
+                    </div>
+                    <Feature class="feature" :post="albumPosts[0]" :section='"albums"'/>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <BlockTiles class="block-row album-posts" :posts="albumPosts.slice(1,5)" :section='"albums"'/>
+            </div>
+            <div class="container-fluid">
+                <div class="block-row top-row">
+                    <div class="section-header">
+                        <nuxt-link 
+                        :to="'radio'" 
+                        tag="div" 
+                        class="section-header__title">
+                            <p>karai</p>
+                            <p>radio</p>
+                        </nuxt-link>
+                    </div>
+                    <BlockTiles class="feature radio-posts" :posts="radioPosts" :section='"radio"'/>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 import BlockTiles from '~/components/home/BlockTiles.vue'
-import BlockHero from '~/components/home/BlockHero.vue'
+import Feature from '~/components/home/Feature.vue'
 import wp from '~/lib/wp'
 
 export default {
@@ -26,7 +65,6 @@ export default {
   async asyncData ({ params }) {
     const page = 1;
     const[trackPosts, albumPosts, radioPosts] = await wp.initialPosts()
-
     return {
       trackPosts,
       albumPosts,
@@ -35,7 +73,7 @@ export default {
   },
   components: {
     BlockTiles,
-    BlockHero
+    Feature
   }
 }
 </script>
@@ -43,28 +81,44 @@ export default {
 <style lang="scss">
 @import 'assets/styles/util.scss';
 
-$screen-lg: 1024px;
+$screen-lg: 1240px;
 $screen-m: 512px;
 
 // Grid styling
-.container {
+#home-page {
     font-family: 'Lato', sans-serif;
-    font-style: italic;
     color: white;
+}
+.container {
+    // display: grid;
+}
 
+.container-fluid {
+    position: relative;
+    z-index: 100;
+    background-color: #f7f7f7;
+    margin: 64px 0;
 }
-.trackPosts {
-    grid-area: tracks;
+.top-row {
+    display: grid;
 }
-.albumPosts {
-    grid-area: albums;
+.block-row {
+    grid-area: row;
 }
-.radioPosts {
-  grid-area: radio;
+.feature {
+    grid-area: feature;
 }
-.hero {
-    grid-area: hero;
+.section-header {
+    grid-area: header;
+    background: white;
 }
+
+.section-header__title p {
+    color: #2b2b2b;
+    font-size: 40pt;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 .header-container {
     margin-left: $margin-s;
     margin-right: $margin-s;
@@ -96,6 +150,16 @@ $screen-m: 512px;
     .header-container {
         margin-left: $margin-lg;
         margin-right: $margin-lg;
+    }
+    .container-fluid {
+        display: grid;
+        grid-template-columns: 1fr 1240px 1fr;
+        grid-template-areas: '. row .';
+    }
+    .top-row {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 'header feature feature feature';
+        grid-gap: 40px;
     }
 }
 </style>

@@ -1,18 +1,22 @@
 <template>
-  <div class="item">
-    <nuxt-link 
-      :to="`${category}/${post.slug}`"
-      >
-      <div class="img-container">
-        <img :src="post.acf.cover_art" :alt="'post.acf.title post.acf.artist'">
-      </div>
-      <div class="info">
-        <h3 class="title"> {{ post.acf.title }} </h3>
-        <h3 class="artist">{{ post.acf.artist }} </h3>
-        <h4 class="date">{{ date }}</h4>
-      </div>
-    </nuxt-link>
-  </div>
+    <div class="card">
+        <nuxt-link 
+        :to="`${category}/${post.slug}`"
+        >
+        <div class="card__img">
+            <img :src="post.acf.cover_art" :alt="'post.acf.title post.acf.artist'">
+        </div>
+        <div class="card__details">
+            <div class="card__post-details">
+                <h3 class="card__title"> {{ post.acf.title }} </h3>
+                <h3 class="card__artist">{{ post.acf.artist }} </h3>
+            </div>
+            <div class="card__meta">
+                <p class="card__date">{{ date }}</p>
+            </div>
+        </div>
+        </nuxt-link>
+    </div>
 </template>
 
 <script>
@@ -32,37 +36,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .item {
-        cursor: pointer;
-        .info {
-            text-align: center;
-            * {
-                margin: 16px 0;
-            }
-            .artist {
-                color: white;
-            }
-            .title {
-                font-style: normal;
-                color: white;
-                font-size: 13pt;
-            }
-            .date {
-                font-size: 9pt;
-                font-style: normal;
-                color: lightgray;
-            }
+.card {
+    background-color: white;
+    height: 100%;
+    cursor: pointer;
+    .card__details {
+        text-align: center;
+        display: grid;
+        .card__post-details {
+            padding: 1rem;
+            min-height: 98px;
         }
-        &:hover {
-            .title,
-            .artist {
-                color: #E91E63;
-            }
+ 
+        .card__artist {
+            color: #2b2b2b;
+            margin-bottom: 12px;
+        }
+        .card__title {
+            font-style: normal;
+            color: #2b2b2b;
+            font-size: 13pt;
+            margin-bottom: 12px;
+        }
+        .card__date {
+            font-size: 9pt;
+            font-style: normal;
+            color: lightgray;
+            padding: 12px;
         }
     }
+    &:hover {
+        .card__title,
+        .card__artist {
+            color: #E91E63;
+        }
+    }
+}
 
-    img {
+.card__img img {
     width: 100%;
-    border-radius: 5px;
 }
 </style>

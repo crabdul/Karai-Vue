@@ -1,36 +1,28 @@
 <template>
-<div class="hero">
-    <div class="hero__bg">
+<div class="feature">
+    <div class="feature__bg">
         <div class="spread">
             <img :src="post.acf.cover_art" alt="">
         </div>
         <div class="shadow"></div>
     </div>
-    <div class="hero__content">
-        <!-- <div class="hero__header-container mv-16">
-            <nuxt-link 
-            :to="section" 
-            tag="div" 
-            class="hero__header">
-                <h2>new {{ section }}</h2>
-            </nuxt-link>
-        </div> -->
-        <nuxt-link 
-        :to="`${section}/${post.slug}`">
+    <div class="feature__content">
         <div class="post">
             <div class="post__meta mv-16">
                 <div class="post__author">By: {{ author }} </div>
                 <div class="post__date">{{ date }} </div>
             </div>
-            <div class="post__cover-art mv-16">
-                <img :src="post.acf.cover_art" alt="">
-            </div>
-            <div class="post__details mv-16">
-                <div class="post__title">{{ post.acf.title }}</div>
-                <div class="post__artist">{{ post.acf.artist }} </div>
-            </div>
+            <nuxt-link :to="`${section}/${post.slug}`">
+                <div class="post__cover-art mv-16">
+                    <img :src="post.acf.cover_art" alt="">
+                </div>
+            </nuxt-link>
+            <nuxt-link class="post__details" :to="`${section}/${post.slug}`" tag="div">
+                <div class="post__title"><p>{{ post.acf.title }}</p></div>
+                <div class="post__artist"><p>{{ post.acf.artist }}</p></div>
+            </nuxt-link>
+
         </div>
-        </nuxt-link>
     </div>
 </div>
 </template>
@@ -56,35 +48,18 @@ export default {
 
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
+@import 'assets/styles/mixins.scss';
 
-.hero {
-    width: 100%;
+.feature {
     position: relative;
+    overflow: hidden;
+    font-family: 'Roboto Condensed', sans-serif;
 }
-.hero__content {
+.feature__content {
     position: relative;
     z-index: 20;
     height: 100%;
     display: grid;
-}
-.hero__header-container {
-    margin-left: $margin-s;
-    margin-right: $margin-s;
-    display: grid;
-    align-content: center;
-}
-.hero__header {
-    padding: 8px 0;
-    border-bottom: 1px solid white;
-    cursor: pointer;
-    h2 {
-        font-size: 24pt;
-    }
-    &:hover {
-        h2 {
-            color: $pink-500;
-        }
-    }
 }
 
 .spread {
@@ -105,9 +80,7 @@ export default {
 .shadow {
     z-index: 15;
     position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(0,0,0,.25);
+    background: rgba(0,0,0,.40);
     width: 100%;
     height: 100%;
 }
@@ -120,11 +93,7 @@ export default {
     align-content: center;
     margin: 16px $margin-s;
 
-    &:hover {
-        .post__title {
-            color: $pink-500;
-        }
-    }
+
 }
 .post__meta {
     display: grid;
@@ -157,23 +126,44 @@ export default {
 
 .post__details {
     text-align: center;
-    display: grid;
     grid-area: details;
     align-content: center;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
     .post__title {
-        font-size: 28pt;
+        font-size: 20pt;
         margin-bottom: 16px;
+        display: inline-block;
+        font-style: italic;
+
+        p {
+            display: inline-block;
+            border-bottom: 2px solid transparent;
+        }
     }
     .post__artist {
-        font-size: 24pt;
+        font-size: 16pt;
+        display: inline-block;
+
+        p {
+            display: inline-block;
+            border-bottom: 2px solid transparent;
+        }
+    }
+
+    &:hover {
+        .post__title p,
+        .post__artist p{
+            border-bottom: 2px solid white;
+        }
     }
 }
-a {
-    color: white;
-}
+
 
 @media screen and (min-width: $screen-m) {
-    .hero__header-container {
+    .feature__header-container {
         margin-left: $margin-m;
         margin-right: $margin-m;
     }
@@ -181,7 +171,7 @@ a {
         margin-left: $margin-m;
         margin-right: $margin-m;
         grid-template-areas: 'meta art details';
-        grid-template-columns: 25% 18% 57%;
+        grid-template-columns: 20% 25% 55%;
     }
     .post__meta {
         justify-content: start;
@@ -190,7 +180,7 @@ a {
 }
 
 @media screen and (min-width: $screen-lg) {
-    .hero__header-container {
+    .feature__header-container {
         margin-left: $margin-lg;
         margin-right: $margin-lg;
     }
