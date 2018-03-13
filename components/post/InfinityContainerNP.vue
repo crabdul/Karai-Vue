@@ -32,7 +32,6 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
         },
         // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
         mounted () {
-            this.windowResize();
             this.windowScroll();
             // this.infiniteScroll();
         },
@@ -57,43 +56,9 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
                         this.currentPost = index
                     }
                 });
-            },
-            parallax() {
-                [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
-                    if (this.isInViewport(post)) {
-                        const ratio = this.getParallaxRatio(post);
-                        post.querySelector('.post-content__container').style.transform = `matrix(1, 0, 0, 1, 0, ${ratio * 40})`;
-                        post.querySelector('.post-details__container').style.transform = `matrix(1, 0, 0, 1, 0, ${ratio * 40})`;
-                    }
-                });
-            },
-            getParallaxRatio(element) {
-                let rect = element.getBoundingClientRect();
-                let html = document.documentElement;
-                let midViewPort = html.clientHeight / 2;
-                let midEl = (rect.top + rect.bottom) / 2;
-                const ratio = (midEl - midViewPort)/midViewPort;
-                return ratio
-            },
-            windowResize() {
-                window.onresize = () => {
-                    // toggle scroll event listener for parallax
-                    if(window.innerWidth >= 960) {
-                        window.addEventListener('scroll', this.parallax );
-                    } else { 
-                        window.removeEventListener('scroll', this.parallax );
-                        // remove transformation
-                        [...this.$el.querySelectorAll('.post-content__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-                        [...this.$el.querySelectorAll('.post-details__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-                    };
-                }
-            },
-            
+            },            
             windowScroll () {
                 window.addEventListener( 'scroll', this.changeURL)
-                if (window.innerWidth >= 960){
-                    window.addEventListener( 'scroll', this.parallax )
-                }
                 window.addEventListener( 'scroll', this.infiniteScroll)
 
             },
@@ -120,7 +85,6 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
         destroyed() {
             window.removeEventListener('scroll', this.changeURL)
             window.removeEventListener('scroll', this.parallax)
-            window.removeEventListener('scroll', this.infiniteScroll)
         }
     }
 </script>

@@ -32,6 +32,8 @@ export default {
 
 
 <style lang="scss" scoped>
+@import 'assets/styles/util.scss';
+
 .album-youtube {
     margin-top: 32px;
     margin-bottom: 16px;
@@ -53,7 +55,7 @@ export default {
                 &:hover {
                     transform: scale(1.05);
                     path {
-                        stroke: white;
+                        stroke: black;
                     }
                 }
             }
@@ -61,6 +63,22 @@ export default {
         .album-youtube__song-title {
             align-self: center;
         }
+    }
+}
+.post {
+    svg g polygon {
+        fill: $black;
+    }
+    .album-youtube__song-title {
+        color: $black;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .album-youtube {
+        display: grid;
+        justify-content: center;
+        align-content: center;
     }
 }
 </style>

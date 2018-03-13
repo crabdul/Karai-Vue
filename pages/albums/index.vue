@@ -1,7 +1,12 @@
 <template>
-  <div class="albums">
-      <block-tiles :posts="posts" :section="'albums'"/>
-  </div>
+    <div>
+        <div class="page-header">
+            <h2>Best new albums</h2>
+        </div>
+        <div class="container-fluid">
+            <block-tiles class="content" :posts="posts" :section="'albums'"/>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -26,7 +31,7 @@ export default {
             meta: [
                 { hid: 'og:url', property: 'og:url', content: 'https://karaimusic.com/albums/'},
                 { hid: 'og:description', property: 'og:description', content: 'Latest albums released'},
-                { hid: 'og:title', property: 'og:title', content: 'Karai Music | New Albums'},
+                { hid: 'og:title', property: 'og:title', content: 'Karai Music | New albums'},
                 { property: 'og:type', content: 'object' }
             ]
         }
@@ -41,9 +46,13 @@ export default {
     },
     methods: {
         checkBottomReached () {
-            const e = document.querySelector('.items').lastChild
-            if (util.isInViewport(e)) {
-                this.getNewPosts()
+            try {
+                const e = document.querySelector('.infinity-container').lastChild
+                if (util.isInViewport(e)) {
+                    this.getNewPosts()
+                }
+            } catch (error) {
+                document.removeEventListener('scroll', this.checkBottomReached)
             }
         },
         getNewPosts () {
@@ -63,9 +72,33 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
 
-.albums {
-    font-family: 'Lato', sans-serif;
+.page-header {
+    text-align: center;
+    margin: 64px 0;
+
+    h2 {
+        font-size: 40pt;
+    }
 }
 
+.content {
+    grid-area: content;
+}
+
+.container-fluid {
+    position: relative;
+    background-color: #f7f7f7;
+}
+
+@media screen and (min-width: $screen-m) {
+}
+
+@media screen and (min-width: $screen-lg) {
+    .container-fluid {
+        display: grid;
+        grid-template-columns: 1fr $screen-lg 1fr;
+        grid-template-areas: '. content .';
+    }
+}
 </style>
 

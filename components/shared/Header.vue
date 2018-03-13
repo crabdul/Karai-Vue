@@ -2,7 +2,7 @@
     <div id="header">
         <nav>
             <nuxt-link to="/" class="text-logo__container" tag="div">
-                <div class="text-logo" @click="closeMenu()">
+                <div class="text-logo">
                     <h1>karai music</h1>
                 </div>
             </nuxt-link>

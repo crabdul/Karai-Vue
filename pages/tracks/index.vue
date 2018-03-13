@@ -46,9 +46,13 @@ export default {
     },
     methods: {
         checkBottomReached () {
-            const e = document.querySelector('.items').lastChild
-            if (util.isInViewport(e)) {
-                this.getNewPosts()
+            try {
+                const e = document.querySelector('.infinity-container').lastChild
+                if (util.isInViewport(e)) {
+                    this.getNewPosts()
+                }
+            } catch (error) {
+                document.removeEventListener('scroll', this.checkBottomReached)
             }
         },
         getNewPosts () {
