@@ -42,5 +42,11 @@ export default {
     svg g polygon {
         fill: black;
     }
+    .post-youtube__play-button svg:hover {
+        transform: scale(1.05);
+        path {
+            stroke: black;
+        }
+    }
 }
 </style>

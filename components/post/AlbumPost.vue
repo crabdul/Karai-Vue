@@ -17,6 +17,10 @@
             </div>
             <PostPlay :post="post.acf" v-if="category === 'tracks'" />
             <PostPlayAlbum :post="post.acf" v-if="category === 'albums'" />
+            <div class="post-details__meta">
+                <h4 class="post-details__author">BY: {{ author }}</h4>
+                <h4 class="post-details__date">{{ date }} </h4>
+            </div>
         </div>
         <div class="post-content">
             <div class="post-content__text" v-html="post.content.rendered">
@@ -91,16 +95,12 @@ export default {
 .post {
     color: $black;
     background: linear-gradient(#f7f7f7, white);
-    padding: 64px;
+    padding: 20px;
 }
 
 .post__header {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 'image info play';
-    justify-content: center;
-    padding: 32px;
-    background-color: white;
+    grid-template-areas: 'info' 'image' 'meta';
 }
 
 .post-details__container {
@@ -109,8 +109,10 @@ export default {
     align-content: center;
     .post-details {
         font-family: 'Roboto Condensed', sans-serif;
+        text-align: center;
+        margin-bottom: 24px;
         h3 {
-            font-size: 30pt;
+            font-size: 24pt;
         }
         .post-details__title {
             font-weight: 700;
@@ -121,12 +123,13 @@ export default {
             color: $red-A700;
             font-weight: 400;
         }
-        .post-details__meta {
-            margin-top: 32px;
-            font-size: 10pt;
-        }
     }
 }
+.post-details__meta {
+    grid-area: meta;
+    font-size: 10pt;
+}
+
 .post-details__author {
     margin: 8px 0;
 }
@@ -138,8 +141,7 @@ export default {
 .post-image__container {
     grid-area: image;
     .post-image img {
-        // width: 100%;
-        width: 300px;
+        width: 100%;
     }
     .post-image__copyright {
         font-size: 9pt;
@@ -149,9 +151,7 @@ export default {
 
 .post-content {
     display: grid;
-    grid-template-columns: 1fr 600px 1fr;
-    grid-template-areas: 'meta content .';
-    margin: 32px 32px;
+    grid-template-areas: 'meta''content';
 }
 
 .post-content__text {
@@ -163,7 +163,7 @@ export default {
     color: $black;
     font-family: 'Lato-400', sans-serif;
     line-height: 2;
-    font-size: 14pt;
+    font-size: 12pt;
     letter-spacing: 1px;
     white-space: pre-wrap;
     
@@ -174,6 +174,37 @@ export default {
 }
 
 @media screen and (min-width: $screen-lg) {
+    .post {
+        padding: 64px;
+    }
+
+    .post-content {
+        grid-template-columns: 200px 600px 1fr;
+        grid-template-areas: 'meta content .';
+        margin: 32px 32px;
+    }
+    .post__header {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas: 'image info play';
+        justify-content: center;
+        padding: 32px;
+        background-color: white;
+    }
+    .post-details__container {
+        grid-area: info;
+        display: grid;
+        align-content: center;
+        .post-details {
+            font-family: 'Roboto Condensed', sans-serif;
+            text-align: center;
+            h3 {
+                font-size: 30pt;
+            }
+        }
+    }
+    .post-content__text {
+        font-size: 14pt;
+    }
 
 }
 
