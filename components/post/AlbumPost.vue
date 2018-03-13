@@ -90,6 +90,8 @@ export default {
 
 .post {
     color: $black;
+    background: linear-gradient(#f7f7f7, white);
+    padding: 64px;
 }
 
 .post__header {
@@ -97,7 +99,6 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 'image info play';
     justify-content: center;
-    margin: 64px;
     padding: 32px;
     background-color: white;
 }
@@ -107,29 +108,31 @@ export default {
     display: grid;
     align-content: center;
     .post-details {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 400;
-        * {
-            margin: 8px 0;
-        }
+        font-family: 'Roboto Condensed', sans-serif;
         h3 {
             font-size: 30pt;
         }
         .post-details__title {
             font-weight: 700;
+            margin: 8px 0;
         }
         .post-details__artist {
             font-style: italic;
             color: $red-A700;
+            font-weight: 400;
         }
         .post-details__meta {
             margin-top: 32px;
             font-size: 10pt;
         }
-        .post-details__date {
-            color: #9E9E9E;
-        }
     }
+}
+.post-details__author {
+    margin: 8px 0;
+}
+
+.post-details__date {
+    color: #9E9E9E;
 }
 
 .post-image__container {
@@ -148,7 +151,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 600px 1fr;
     grid-template-areas: 'meta content .';
-    margin: 0 64px;
+    margin: 32px 32px;
 }
 
 .post-content__text {
