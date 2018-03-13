@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'assets/styles/util.scss';
+
 .card {
     background-color: white;
     height: 100%;
@@ -53,18 +55,19 @@ export default {
         .card__artist {
             color: #2b2b2b;
             margin-bottom: 12px;
+            font-size: 15pt;
         }
         .card__title {
             font-style: normal;
             color: #2b2b2b;
-            font-size: 13pt;
+            font-size: 15pt;
             margin-bottom: 12px;
             font-weight: 700;
         }
         .card__date {
-            font-size: 9pt;
+            font-size: 10pt;
             font-style: normal;
-            color: lightgray;
+            color: gray;
             padding: 12px;
         }
     }
@@ -78,5 +81,21 @@ export default {
 
 .card__img img {
     width: 100%;
+}
+
+@media screen and (min-width: $screen-lg) {
+.card {
+    .card__details {
+        .card__artist {
+
+        }
+        .card__title {
+            font-size: 13pt;
+        }
+        .card__date {
+            font-size: 9pt;
+        }
+    }
+}
 }
 </style>

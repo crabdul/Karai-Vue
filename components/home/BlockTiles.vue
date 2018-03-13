@@ -56,11 +56,18 @@ section.radioPosts {
 
 }
 
+.items li {
+    margin: 32px 0;
+}
+
 @media screen and (min-width: $screen-m) {
     .items {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 64px;
+    }
+    .items li {
+        margin: 0;
     }
 }
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="albums-page">
         <div class="page-header">
             <h2>Best new albums</h2>
         </div>
@@ -72,12 +72,16 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
 
+.albums-page {
+    margin-bottom: 64px;
+}
+
 .page-header {
     text-align: center;
     margin: 64px 0;
 
     h2 {
-        font-size: 40pt;
+        font-size: 32pt;
     }
 }
 
@@ -88,9 +92,7 @@ export default {
 .container-fluid {
     position: relative;
     background-color: #f7f7f7;
-}
-
-@media screen and (min-width: $screen-m) {
+    margin: 0 32px;
 }
 
 @media screen and (min-width: $screen-lg) {
@@ -98,6 +100,11 @@ export default {
         display: grid;
         grid-template-columns: 1fr $screen-lg 1fr;
         grid-template-areas: '. content .';
+    }
+    .page-header {
+        h2 {
+            font-size: 40pt;
+        }
     }
 }
 </style>
