@@ -8,9 +8,9 @@
                         :to="'tracks'" 
                         tag="div" 
                         class="section-header__title">
-                            <p>best</p>
-                            <p>new</p>
-                            <p>tracks</p>
+                            <div><p>best</p></div>
+                            <div><p>new</p></div>
+                            <div><p>tracks</p></div>
                         </nuxt-link>
                     </div>
                     <Feature class="feature" :post="trackPosts[0]" :section='"tracks"'/>
@@ -26,9 +26,9 @@
                         :to="'albums'" 
                         tag="div" 
                         class="section-header__title">
-                            <p>best</p>
-                            <p>new</p>
-                            <p>albums</p>
+                            <div><p>best</p></div>
+                            <div><p>new</p></div>
+                            <div><p>albums</p></div>
                         </nuxt-link>
                     </div>
                     <Feature class="feature" :post="albumPosts[0]" :section='"albums"'/>
@@ -44,8 +44,8 @@
                         :to="'radio'" 
                         tag="div" 
                         class="section-header__title">
-                            <p>karai</p>
-                            <p>radio</p>
+                            <div><p>karai</p></div>
+                            <div><p>radio</p></div>
                         </nuxt-link>
                     </div>
                     <BlockTiles class="feature radio-posts" :posts="radioPosts" :section='"radio"'/>
@@ -89,13 +89,9 @@ $screen-m: 512px;
     font-family: 'Lato', sans-serif;
     color: white;
 }
-.container {
-    // display: grid;
-}
 
 .container-fluid {
     position: relative;
-    z-index: 100;
     background-color: #f7f7f7;
     margin: 64px 0;
 }
@@ -113,10 +109,18 @@ $screen-m: 512px;
     background: white;
 }
 
-.section-header__title p {
+.section-header__title {
+    p {
     color: #2b2b2b;
     font-size: 40pt;
     font-family: 'Roboto Condensed', sans-serif;
+    border-bottom: 3px solid transparent;
+    display: inline-flex;
+    }
+    &:hover p {
+        border-bottom: 3px solid black;
+    }
+
 }
 
 .header-container {

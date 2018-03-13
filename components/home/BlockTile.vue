@@ -39,13 +39,15 @@ export default {
 .card {
     background-color: white;
     height: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+
     cursor: pointer;
     .card__details {
         text-align: center;
         display: grid;
         .card__post-details {
             padding: 1rem;
-            min-height: 98px;
+            min-height: 70px;
         }
  
         .card__artist {
@@ -57,6 +59,7 @@ export default {
             color: #2b2b2b;
             font-size: 13pt;
             margin-bottom: 12px;
+            font-weight: 700;
         }
         .card__date {
             font-size: 9pt;

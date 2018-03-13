@@ -30,6 +30,7 @@ export default {
 body {
     background-color: #f7f7f7;
     color: #2b2b2b;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .app-player {

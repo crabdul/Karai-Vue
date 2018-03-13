@@ -44,6 +44,7 @@ export default {
     position: fixed;
     top: 4px;
     right: -8px;
+    z-index: 999;
 
     .menu__button {
         margin-right: 12px;
