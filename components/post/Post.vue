@@ -2,7 +2,7 @@
   <div class="post">
         <div class="post-details__container">
             <div class="post-details">
-                <h3>{{ post.acf.title }} </h3>
+                <h3 class="post-details__title">{{ post.acf.title }} </h3>
                 <h3 class="post-details__artist">{{ post.acf.artist }} </h3>
                 <div class="post-details__meta">
                     <h4 class="post-details__author">BY: {{ author }}</h4>
@@ -84,19 +84,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$red-A700: #D50000;
-$screen-xl: 1300px;
-$screen-lg: 960px;
-$screen-m: 512px;
-
-$image-lg: 384px;
-$image-xl: 512px;
+@import 'assets/styles/util.scss';
 
 .infinity-container {
     position: relative;
     z-index: 1;
-    color: white;
-    font-family: 'Lato', sans-serif;
 }
 
 .post {
@@ -104,17 +96,37 @@ $image-xl: 512px;
     grid-template-columns: 16px 1fr 16px;
     grid-template-areas: '. image .''. header .''. content .';
     grid-gap: 16px;
-    min-height: 100vh;
+    min-height: 600px;
+    height: 100vh;
     align-content: center;
     margin: 64px 0;
 }
 
 .post:first-child {
-    min-height: calc(100vh - 54px);
+    height: calc(100vh - 54px);
 }
 
 .post:last-child {
     min-height: 90vh;
+}
+.post:nth-child(even) {
+    background-color: black;
+
+    .post-content {
+        color: $white;
+    }
+}
+
+.post:nth-child(odd) {
+    .post-details__title {
+        color: $black;
+    }
+    .post-details__author {
+        color: $black;
+    }
+    svg g polygon {
+        fill: $black;
+    }
 }
 
 .post-details__container {
@@ -122,11 +134,16 @@ $image-xl: 512px;
     display: grid;
     align-content: center;
     .post-details {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
         * {
             margin: 8px 0;
         }
         h3 {
             font-size: 30pt;
+        }
+        .post-details__title {
+            font-weight: 700;
         }
         .post-details__artist {
             font-style: italic;
@@ -159,11 +176,12 @@ $image-xl: 512px;
     padding-bottom: 24px;
     display: grid;
     align-content: center;
-    color: #E0E0E0;
+    // color: #E0E0E0;
+    color: $black;
     font-family: 'Lato-400', sans-serif;
-    white-space: pre-wrap;
-    line-height: 1.5;
+    line-height: 1.8;
     font-size: 10.5pt;
+    white-space: pre-wrap;
     
 }
 
@@ -180,14 +198,14 @@ $image-xl: 512px;
     }
     .post-content {
         // prevents text from being cropped
-        position: absolute;
+        // position: absolute;
     }
 }
 
 @media screen and (min-width: $screen-lg) {
     .post {
         display: grid;
-        grid-template-columns: 1fr 250px $image-lg 300px 1fr;
+        grid-template-columns: 1fr 250px $image-lg 430px 1fr;
         grid-template-areas: '. header image content .';
         grid-gap: 0px;
         margin: 0;
@@ -197,7 +215,7 @@ $image-xl: 512px;
             padding-bottom: 0;
                 font-size: 10.5pt;
                 max-height: $image-lg;
-                overflow: scroll;
+                // overflow: scroll;
                 padding-right: 8px;
         }
     }

@@ -81,7 +81,7 @@ export default {
 <style lang="scss">
 @import 'assets/styles/util.scss';
 
-$screen-lg: 1240px;
+$screen-lg: 1200px;
 $screen-m: 512px;
 
 // Grid styling
@@ -116,6 +116,7 @@ $screen-m: 512px;
     font-family: 'Roboto Condensed', sans-serif;
     border-bottom: 3px solid transparent;
     display: inline-flex;
+    font-style: italic;
     }
     &:hover p {
         border-bottom: 3px solid black;
@@ -157,7 +158,7 @@ $screen-m: 512px;
     }
     .container-fluid {
         display: grid;
-        grid-template-columns: 1fr 1240px 1fr;
+        grid-template-columns: 1fr $screen-lg 1fr;
         grid-template-areas: '. row .';
     }
     .top-row {

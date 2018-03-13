@@ -38,4 +38,9 @@ export default {
         }
     }
 }
+.post:nth-child(odd) {
+    svg g polygon {
+        fill: black;
+    }
+}
 </style>

@@ -31,7 +31,6 @@ $screen-lg: 1024px;
 $screen-m: 512px;
 
 section {
-    padding: 64px 0;
     background-color: #f7f7f7;;
     position: relative;
     z-index: 20;
