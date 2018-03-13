@@ -28,6 +28,8 @@ export default {
 
 <style lang="scss" scoped>
 @import 'assets/styles/mixins.scss';
+@import 'assets/styles/util.scss';
+
 
 $min-width: 800px;
 
@@ -38,6 +40,8 @@ $min-width: 800px;
     font-style: italic;
     width: 100%;
     background-color: white; // background-color: #121212;
+    height: 56px;
+    display: grid;
 }
 .nav-container {
     text-align: center;
@@ -48,11 +52,10 @@ $min-width: 800px;
     display: grid;
     height: 100%;
     align-items: center;
-    padding-top: 2rem;
 
     h1 {
         font-family: 'Lato', sans-serif;
-        font-size: 36pt;
+        font-size: 30pt;
         color: black;
         display: inline-block;
         text-shadow: -0.06em 0 red, 0.06em 0 cyan;
@@ -63,6 +66,9 @@ $min-width: 800px;
             text-shadow: 0.06em 0 red, -0.06em 0 cyan;
         }
     }
+}
+.primary-nav {
+    display: none;
 }
 
 .primary-nav__list {
@@ -77,5 +83,21 @@ $min-width: 800px;
 .primary-nav__link {
     color: black;
     @include hover-underline;
+}
+
+@media screen and (min-width: $screen-m) {
+    .sitenav {
+        height: 100%;
+    }
+    .primary-nav {
+        display: initial;
+    }
+    .nav-container__logo {
+        padding-top: 2rem;
+
+        h1 {
+            font-size: 36pt;
+        }
+    }
 }
 </style>

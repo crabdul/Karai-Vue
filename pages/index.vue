@@ -93,10 +93,12 @@ $screen-m: 512px;
 .container-fluid {
     position: relative;
     background-color: #f7f7f7;
-    margin: 64px 0;
+    margin: 64px 32px;
 }
 .top-row {
     display: grid;
+    grid-template-areas: 'header''feature';
+
 }
 .block-row {
     grid-area: row;
@@ -107,6 +109,7 @@ $screen-m: 512px;
 .section-header {
     grid-area: header;
     background: white;
+    margin-bottom: 32px;
 }
 
 .section-header__title {
@@ -124,12 +127,6 @@ $screen-m: 512px;
 
 }
 
-.header-container {
-    margin-left: $margin-s;
-    margin-right: $margin-s;
-    display: grid;
-    align-content: center;
-}
 .header {
     padding: 8px 0;
     border-bottom: 1px solid white;
@@ -145,17 +142,15 @@ $screen-m: 512px;
 }
 
 @media screen and (min-width: $screen-m) {
-    .header-container {
-        margin-left: $margin-m;
-        margin-right: $margin-m;
+    .top-row {
+        grid-template-areas: 'header .''feature feature';
+    }
+    .section-header {
+        width: 220px;
     }
 }
 
 @media screen and (min-width: $screen-lg) {
-    .header-container {
-        margin-left: $margin-lg;
-        margin-right: $margin-lg;
-    }
     .container-fluid {
         display: grid;
         grid-template-columns: 1fr $screen-lg 1fr;
@@ -165,6 +160,10 @@ $screen-m: 512px;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-areas: 'header feature feature feature';
         grid-gap: 64px;
+    }
+    .section-header {
+        width: 100%;
+        height: 100%;
     }
 }
 </style>
