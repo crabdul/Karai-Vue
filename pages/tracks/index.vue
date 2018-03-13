@@ -1,7 +1,12 @@
 <template>
-  <div class="tracks">
-      <block-tiles :posts="posts" :section="'tracks'"/>
-  </div>
+    <div>
+        <div class="page-header">
+            <h2>Best new tracks</h2>
+        </div>
+        <div class="container-fluid">
+            <block-tiles class="content" :posts="posts" :section="'tracks'"/>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -63,9 +68,33 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
 
-.tracks {
-    font-family: 'Lato', sans-serif;
+.page-header {
+    text-align: center;
+    margin: 64px 0;
+
+    h2 {
+        font-size: 40pt;
+    }
 }
 
+.content {
+    grid-area: content;
+}
+
+.container-fluid {
+    position: relative;
+    background-color: #f7f7f7;
+}
+
+@media screen and (min-width: $screen-m) {
+}
+
+@media screen and (min-width: $screen-lg) {
+    .container-fluid {
+        display: grid;
+        grid-template-columns: 1fr 1240px 1fr;
+        grid-template-areas: '. content .';
+    }
+}
 </style>
 

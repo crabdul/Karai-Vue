@@ -163,7 +163,7 @@ $screen-m: 512px;
     .top-row {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-areas: 'header feature feature feature';
-        grid-gap: 40px;
+        grid-gap: 64px;
     }
 }
 </style>

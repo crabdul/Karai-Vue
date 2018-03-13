@@ -41,6 +41,8 @@ nav {
 .text-logo__container {
     text-align: center;
     height: 100%;
+        display: grid;
+    align-items: center;
 
     h1 {
         font-family: 'Lato', sans-serif;

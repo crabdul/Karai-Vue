@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <!-- <app-header/> -->
+    <app-header v-if="['index'].indexOf($route.name) == -1"/>
     <app-home-header v-if="['index'].indexOf($route.name) > -1"/>
     <nuxt/>
     <appFooter/>
