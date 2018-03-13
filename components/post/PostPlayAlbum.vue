@@ -74,7 +74,7 @@ export default {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $screen-ml) {
     .album-youtube {
         display: grid;
         justify-content: center;

@@ -6,7 +6,7 @@
                     <img :src="post.acf.cover_art" :alt="decode(post.title.rendered)">
                 </div>
                 <div class="post-image__copyright">
-                    {{ post.acf.label }}
+                    {{ post.acf.label.toUpperCase() }}
                 </div>
             </div>
             <div class="post-details__container">
@@ -17,10 +17,6 @@
             </div>
             <PostPlay :post="post.acf" v-if="category === 'tracks'" />
             <PostPlayAlbum :post="post.acf" v-if="category === 'albums'" />
-            <div class="post-details__meta">
-                <h4 class="post-details__author">BY: {{ author }}</h4>
-                <h4 class="post-details__date">{{ date }} </h4>
-            </div>
         </div>
         <div class="post-content">
             <div class="post-content__text" v-html="post.content.rendered">
@@ -128,6 +124,7 @@ export default {
 .post-details__meta {
     grid-area: meta;
     font-size: 10pt;
+    margin-bottom: 24px;
 }
 
 .post-details__author {
@@ -144,6 +141,7 @@ export default {
         width: 100%;
     }
     .post-image__copyright {
+        margin-top: 8px;
         font-size: 9pt;
         color: grey;
     }
@@ -170,12 +168,27 @@ export default {
 }
 
 @media screen and (min-width: $screen-m) {
-
+    .post {
+        padding: 32px;
+    }
+    .post-image__container {
+        width: 66%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-@media screen and (min-width: $screen-lg) {
+@media screen and (min-width: $screen-ml) {
     .post {
         padding: 64px;
+    }
+
+    .post-image__container {
+        width: 100%;
+    }
+
+    .post-image {
+        width: 100%;
     }
 
     .post-content {
