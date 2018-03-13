@@ -17,7 +17,7 @@
                 <img :src="post.acf.cover_art" :alt="decode(post.title.rendered)">
             </div>
             <div class="post-image__copyright">
-                {{ post.acf.label }}
+                {{ post.acf.label.toUpperCase() }}
             </div>
         </div>
         <div class="post-content__container">
@@ -96,14 +96,8 @@ export default {
     grid-template-columns: 16px 1fr 16px;
     grid-template-areas: '. image .''. header .''. content .';
     grid-gap: 16px;
-    min-height: 600px;
-    height: 100vh;
     align-content: center;
-    margin: 64px 0;
-}
-
-.post:first-child {
-    height: calc(100vh - 54px);
+    padding: 64px 0;
 }
 
 .post:last-child {
@@ -167,22 +161,24 @@ export default {
     .post-image__copyright {
         font-size: 9pt;
         color: grey;
+        margin-top: 8px;
     }
 }
 
 .post-content__container {
     grid-area: content;
-    border-bottom: 2px solid grey;
     padding-bottom: 24px;
     display: grid;
     align-content: center;
     // color: #E0E0E0;
+}
+
+.post-content {
     color: $black;
     font-family: 'Lato-400', sans-serif;
     line-height: 1.8;
-    font-size: 10.5pt;
+    font-size: 12pt;
     white-space: pre-wrap;
-    
 }
 
 @media screen and (min-width: $screen-m) {
@@ -191,33 +187,35 @@ export default {
         grid-template-columns: 1fr 500px 1fr;
         grid-template-areas: '. image .''. header .''. content .';
         grid-gap: 16px;
-        .post-content__container {
-            margin-left: 0;
-                font-size: 12pt;
-        }
     }
     .post-content {
-        // prevents text from being cropped
-        // position: absolute;
+        font-size: 13pt;
     }
 }
 
 @media screen and (min-width: $screen-lg) {
+    .post:first-child {
+        height: calc(100vh - 54px);
+    }
     .post {
         display: grid;
         grid-template-columns: 1fr 250px $image-lg 430px 1fr;
         grid-template-areas: '. header image content .';
         grid-gap: 0px;
         margin: 0;
+        min-height: 600px;
+        height: 100vh;
         .post-content__container {
             margin-left: 48px;
             border-bottom: none;
             padding-bottom: 0;
-                font-size: 10.5pt;
-                max-height: $image-lg;
+            max-height: $image-lg;
                 // overflow: scroll;
                 padding-right: 8px;
         }
+    }
+    .post-content {
+        font-size: 11pt;
     }
 }
 
