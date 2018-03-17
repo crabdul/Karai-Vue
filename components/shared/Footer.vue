@@ -16,7 +16,7 @@
         display: grid;
         font-family: 'Lato', sans-serif;
         color: white;
-        height: 10vh;
+        height: 98px;
         background-color: #181818;
         text-align: center;
         font-size: 10pt;
