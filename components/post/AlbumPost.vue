@@ -162,7 +162,7 @@ export default {
     font-family: 'Lato-400', sans-serif;
     line-height: 2;
     font-size: 12pt;
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
     white-space: pre-wrap;
     
 }

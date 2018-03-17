@@ -64,11 +64,11 @@
 <style lang="scss" scoped>
     #radio {
         color: white;
+        min-height: 100vh;
     }
 
     .spotify-player {
         padding-top: 64px;
-        height: 100%;
         display: grid;
         .spotify-player__container {
             text-align: center;
