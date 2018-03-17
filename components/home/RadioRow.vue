@@ -1,8 +1,8 @@
 <template>
   <section>
-    <ul class="items">
+    <ul class="radio__items">
       <li v-for="post in posts" :key="post.id">
-        <BlockTile :post="post" :category="section" v-if="section === 'tracks' || section === 'albums'"/>
+        <RadioTile :post="post" :category="section" v-if="section === 'radio'"/>
       </li>
     </ul>
   </section>
@@ -53,25 +53,29 @@ section.radioPosts {
 
 }
 
-.items li {
+.radio__items {
+    height: 100%;
+}
+.radio__items li {
     margin: 32px 0;
+    height: 100%;
 }
 
 @media screen and (min-width: $screen-m) {
-    .items {
+    .radio__items {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 64px;
     }
-    .items li {
+    .radio__items li {
         margin: 0;
     }
 }
 
 @media screen and (min-width: $screen-lg ) {
-    .items {
+    .radio__items {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 64px;
     }
 }

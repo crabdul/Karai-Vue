@@ -48,7 +48,7 @@
                             <div><p>radio</p></div>
                         </nuxt-link>
                     </div>
-                    <BlockTiles class="feature radio-posts" :posts="radioPosts" :section='"radio"'/>
+                    <radio-row class="feature radio-posts" :posts="radioPosts" :section='"radio"'/>
                 </div>
             </div>
         </div>
@@ -57,6 +57,7 @@
 
 <script>
 import BlockTiles from '~/components/home/BlockTiles.vue'
+import RadioRow from '~/components/home/RadioRow.vue'
 import Feature from '~/components/home/Feature.vue'
 import wp from '~/lib/wp'
 
@@ -73,6 +74,7 @@ export default {
   },
   components: {
     BlockTiles,
+    RadioRow,
     Feature
   }
 }
