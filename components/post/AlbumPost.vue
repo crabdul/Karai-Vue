@@ -15,8 +15,7 @@
                     <h3 class="post-details__artist">{{ post.acf.artist }} </h3>
                 </div>
             </div>
-            <PostPlay :post="post.acf" v-if="category === 'tracks'" />
-            <PostPlayAlbum :post="post.acf" v-if="category === 'albums'" />
+            <PostPlayAlbum :post="post.acf"/>
         </div>
         <div class="post-content">
             <div class="post-content__text" v-html="post.content.rendered">
@@ -31,7 +30,6 @@
 
 <script>
 import util from '~/lib/util'
-import PostPlay from '~/components/post/PostPlay.vue'
 import PostPlayAlbum from '~/components/post/PostPlayAlbum.vue'
 
 export default {
@@ -64,8 +62,7 @@ export default {
         }
     },
     components: {
-        PostPlay,
-        PostPlayAlbum
+        PostPlayAlbum,
     },
     computed: {
         author () {
