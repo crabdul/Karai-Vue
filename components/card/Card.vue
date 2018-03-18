@@ -8,8 +8,8 @@
         </div>
         <div class="card__details">
             <div class="card__post-details">
-                <h3 class="card__title"> {{ post.acf.title }} </h3>
-                <h3 class="card__artist">{{ post.acf.artist }} </h3>
+                <h3 class="card__title"> {{ post.acf.title }}</h3>
+                <h3 class="card__artist">{{ post.acf.artist }}</h3>
             </div>
             <div class="card__meta">
                 <div class="card__genres">

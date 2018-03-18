@@ -24,7 +24,6 @@
                 <div class="post__title"><p>{{ post.acf.title }}</p></div>
                 <div class="post__artist"><p>{{ post.acf.artist }}</p></div>
             </nuxt-link>
-
         </div>
     </div>
 </div>
@@ -60,6 +59,7 @@ export default {
     position: relative;
     overflow: hidden;
     font-family: 'Roboto Condensed', sans-serif;
+    color: whitesmoke;
 }
 .feature__content {
     position: relative;

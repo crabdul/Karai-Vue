@@ -2,7 +2,7 @@
   <section>
     <ul class="radio__items">
       <li v-for="post in posts" :key="post.id">
-        <RadioTile :post="post" :category="section"/>
+        <RadioTile :post="post"/>
       </li>
     </ul>
   </section>
