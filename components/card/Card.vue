@@ -74,6 +74,10 @@ export default {
             font-size: 10pt;
             color: #2b2b2b;
 
+            span {
+                margin: 0 4px;
+            }
+
         }
         .card__date {
             font-size: 10pt;
@@ -97,9 +101,6 @@ export default {
 @media screen and (min-width: $screen-lg) {
 .card {
     .card__details {
-        .card__artist {
-
-        }
         .card__title {
             font-size: 13pt;
         }
