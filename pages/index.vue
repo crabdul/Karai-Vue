@@ -4,11 +4,11 @@
             <row-title :section="tracks" :sectionTitle="tracksTitle">
                 <feature slot="content" :post="trackPosts[0]" :section="tracks"/>
             </row-title>
-            <BlockTiles :posts="trackPosts.slice(1,5)" :section="tracks"/>
+            <row-cards :posts="trackPosts.slice(1,5)" :section="tracks"/>
             <row-title :section="albums" :sectionTitle="albumsTitle">
                 <feature slot="content" :post="albumPosts[0]" :section="albums"/>
             </row-title>            
-            <BlockTiles :posts="albumPosts.slice(1,5)" :section="albums"/>
+            <row-cards :posts="albumPosts.slice(1,5)" :section="albums"/>
             <row-title :section="radio" :sectionTitle="radioTitle">
                 <radio-cards slot="content" class="feature radio-posts" :posts="radioPosts" :section="radio"/>
             </row-title>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import BlockTiles from '~/components/home/BlockTiles.vue'
+import RowCards from '~/components/home/RowCards.vue'
 import RadioCards from '~/components/home/RadioCards.vue'
 import Feature from '~/components/home/Feature.vue'
 import RowTitle from '~/components/home/RowTitle.vue'
@@ -35,7 +35,7 @@ export default {
     }
   },
   components: {
-    BlockTiles,
+    RowCards,
     RowTitle,
     RadioCards,
     Feature
