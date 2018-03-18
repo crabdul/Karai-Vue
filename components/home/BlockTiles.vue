@@ -2,14 +2,14 @@
   <section>
     <ul class="items">
       <li v-for="post in posts" :key="post.id">
-        <BlockTile :post="post" :category="section" v-if="section === 'tracks' || section === 'albums'"/>
+        <card :post="post" :category="section" v-if="section === 'tracks' || section === 'albums'"/>
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-import BlockTile from './BlockTile.vue'
+import Card from '~/components/card/Card.vue'
 import RadioTile from './RadioTile.vue'
 
 export default {
@@ -18,7 +18,7 @@ export default {
     section: { type: String }
   },
   components: {
-    BlockTile,
+    Card,
     RadioTile
   }
 }

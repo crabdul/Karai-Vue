@@ -2,23 +2,20 @@
   <section>
     <ul class="radio__items">
       <li v-for="post in posts" :key="post.id">
-        <RadioTile :post="post" :category="section" v-if="section === 'radio'"/>
+        <RadioTile :post="post" :category="section"/>
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-import BlockTile from './BlockTile.vue'
 import RadioTile from './RadioTile.vue'
 
 export default {
   props: {
-    posts: { type: Array },
-    section: { type: String }
+    posts: { type: Array }
   },
   components: {
-    BlockTile,
     RadioTile
   }
 }
@@ -26,32 +23,6 @@ export default {
 
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
-
-section {
-    background-color: #f7f7f7;;
-    position: relative;
-    z-index: 20;
-
-    .section-header {
-        display: flex;
-        align-items: center;
-        .section-title {
-            font-size: 24pt;
-            white-space: nowrap;
-            margin-right: 16px;
-            cursor: pointer;
-            &:hover {
-                color: #E91E63;
-            }
-        }
-    }
-}
-
-// Temp
-section.radioPosts {
-    padding-top: 32px;
-
-}
 
 .radio__items {
     height: 100%;
@@ -79,8 +50,5 @@ section.radioPosts {
         grid-gap: 64px;
     }
 }
-
-
-
 
 </style>

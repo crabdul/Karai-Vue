@@ -33,6 +33,10 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+a {
+    color: #2b2b2b;
+}
+
 .app-player {
   position: fixed;
   bottom: 0;

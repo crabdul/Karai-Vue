@@ -9,7 +9,10 @@
     <div class="feature__content">
         <div class="post">
             <div class="post__meta mv-16">
-                <div class="post__author">By: {{ author }} </div>
+                <div class="card__genres">
+                    <span class="card__genre" v-for="(genre, index) in genres" v-bind:key="index">{{ genre }}</span>
+                </div>
+                <div class="post__author">BY: {{ author }} </div>
                 <div class="post__date">{{ date }} </div>
             </div>
             <nuxt-link :to="`${section}/${post.slug}`">
@@ -41,6 +44,9 @@ export default {
         },
         date () {
             return util.getDate(this.post.date)
+        },
+        genres () {
+            return util.getGenres(this.post.genre)
         }
   }
 }

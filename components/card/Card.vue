@@ -55,7 +55,7 @@ export default {
         display: grid;
         .card__post-details {
             padding: 1rem;
-            min-height: 70px;
+            min-height: 80px;
         }
  
         .card__artist {
@@ -69,6 +69,11 @@ export default {
             font-size: 15pt;
             margin-bottom: 12px;
             font-weight: 700;
+        }
+        .card__genres {
+            font-size: 10pt;
+            color: #2b2b2b;
+
         }
         .card__date {
             font-size: 10pt;
