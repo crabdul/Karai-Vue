@@ -12,8 +12,7 @@
                     <h4 class="post-details__date">{{ date }} </h4>
                 </div>
             </div>
-            <PostPlay :post="post.acf" v-if="post.acf.song_platform == 'Youtube'"/>
-            <spotify-player :uri="post.acf.song_id" v-if="post.acf.song_platform == 'Spotify'"/>
+            <PostPlay :post="post.acf"/>
         </div>
         <div class="post-image__container">
             <div class="post-image">
@@ -34,7 +33,6 @@
 import util from '~/lib/util'
 import PostPlay from '~/components/post/PostPlay.vue'
 import PostPlayAlbum from '~/components/post/PostPlayAlbum.vue'
-import SpotifyPlayer from '~/components/post/players/Spotify.vue'
 
 export default {
     data () {
@@ -67,8 +65,6 @@ export default {
     },
     components: {
         PostPlay,
-        PostPlayAlbum,
-        SpotifyPlayer
     },
     computed: {
         author () {
