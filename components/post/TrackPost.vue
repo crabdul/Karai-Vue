@@ -102,9 +102,12 @@ export default {
     align-content: center;
     padding: 64px 0;
 }
+.post:first-child {
+    padding-top: 0;
+}
 
 .post:last-child {
-    min-height: 90vh;
+    padding-bottom: 0;
 }
 .post:nth-child(even) {
     background-color: black;
@@ -118,7 +121,7 @@ export default {
     .post-details__title {
         color: $black;
     }
-    .post-details__author {
+    .post-details__meta {
         color: $black;
     }
     svg g polygon {
