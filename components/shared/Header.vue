@@ -50,7 +50,12 @@ nav {
         color: black;
         display: inline-flex;
         text-shadow: -0.06em 0 red, 0.06em 0 cyan;
+        transition: all linear 0.1s;
         cursor: pointer;
+
+        &:hover {
+            text-shadow: 0.06em 0 red, -0.06em 0 cyan;
+        }
     }
 }
 </style>
