@@ -5,6 +5,9 @@
                 <h3 class="post-details__title">{{ post.acf.title }} </h3>
                 <h3 class="post-details__artist">{{ post.acf.artist }} </h3>
                 <div class="post-details__meta">
+                    <div class="card__genres">
+                        <span class="card__genre" v-for="(genre, index) in genres" v-bind:key="index">{{ genre }}</span>
+                    </div>
                     <h4 class="post-details__author">BY: {{ author }}</h4>
                     <h4 class="post-details__date">{{ date }} </h4>
                 </div>
@@ -73,6 +76,9 @@ export default {
         },
         date () {
             return util.getDate(this.post.date)
+        },
+        genres () {
+            return util.getGenres(this.post.genre)
         }
     },
     methods: {

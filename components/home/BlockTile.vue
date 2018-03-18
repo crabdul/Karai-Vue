@@ -12,6 +12,9 @@
                 <h3 class="card__artist">{{ post.acf.artist }} </h3>
             </div>
             <div class="card__meta">
+                <div class="card__genres">
+                    <span class="card__genre" v-for="(genre, index) in genres" v-bind:key="index">{{ genre }}</span>
+                </div>
                 <p class="card__date">{{ date }}</p>
             </div>
         </div>
@@ -30,6 +33,9 @@ export default {
   computed: {
         date () {
             return util.getDate(this.post.date)
+        },
+        genres () {
+            return util.getGenres(this.post.genre)
         }
   }
 }
