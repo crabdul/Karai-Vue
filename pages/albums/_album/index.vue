@@ -6,7 +6,7 @@
 
 <script>
 import wp from '~/lib/wp'
-import InfinityContainer from '~/components/post/InfinityContainerNP.vue'
+import InfinityContainer from '~/components/post/InfinityContainer.vue'
     export default {
         components: {
             InfinityContainer

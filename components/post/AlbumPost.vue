@@ -15,7 +15,7 @@
                     <h3 class="post-details__artist">{{ post.acf.artist }} </h3>
                 </div>
             </div>
-            <PostPlayAlbum :post="post.acf"/>
+            <play-album :post="post.acf"/>
         </div>
         <div class="post-content">
             <div class="post-content__text" v-html="post.content.rendered">
@@ -33,7 +33,7 @@
 
 <script>
 import util from '~/lib/util'
-import PostPlayAlbum from '~/components/post/PostPlayAlbum.vue'
+import PlayAlbum from '~/components/post/PlayAlbum.vue'
 
 export default {
     data () {
@@ -65,7 +65,7 @@ export default {
         }
     },
     components: {
-        PostPlayAlbum,
+        PlayAlbum,
     },
     computed: {
         author () {

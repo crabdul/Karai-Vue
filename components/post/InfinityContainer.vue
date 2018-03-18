@@ -1,18 +1,18 @@
 <template>
     <div class="infinity-container">
-        <Post v-if="category == 'tracks'" :category="category" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
+        <TrackPost v-if="category == 'tracks'" :category="category" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
         <AlbumPost v-if="category == 'albums'" :category="category" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
     </div>
 </template>
 
 <script>
 import wp from '~/lib/wp'
-import Post from '~/components/post/Post.vue'
+import TrackPost from '~/components/post/TrackPost.vue'
 import AlbumPost from '~/components/post/AlbumPost.vue'
 
     export default {
         components: {
-            Post,
+            TrackPost,
             AlbumPost
         },
         props: {

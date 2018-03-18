@@ -12,7 +12,7 @@
                     <h4 class="post-details__date">{{ date }} </h4>
                 </div>
             </div>
-            <PostPlay :post="post.acf"/>
+            <play-track :post="post.acf"/>
         </div>
         <div class="post-image__container">
             <div class="post-image">
@@ -31,8 +31,7 @@
 
 <script>
 import util from '~/lib/util'
-import PostPlay from '~/components/post/PostPlay.vue'
-import PostPlayAlbum from '~/components/post/PostPlayAlbum.vue'
+import PlayTrack from '~/components/post/PlayTrack.vue'
 
 export default {
     data () {
@@ -64,7 +63,7 @@ export default {
         }
     },
     components: {
-        PostPlay,
+        PlayTrack
     },
     computed: {
         author () {
