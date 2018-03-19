@@ -45,8 +45,8 @@
                         <span class="total-time">{{ totalTime }}</span>
                     </div>
                 </div>
-
-                <div class="player__sound-ctrl">
+                <div class="player__right">
+                    <div class="player__sound-ctrl">
                     <div class="player__sound-on" v-show="soundOn" @click="soundOn = false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
                             <path d="M3.34 0l-1.34 2h-2v4h2l1.34 2h.66v-8h-.66zm1.66 1v1c.17 0 .34.02.5.06.86.22 1.5 1 1.5 1.94s-.63 1.72-1.5 1.94c-.16.04-.33.06-.5.06v1c.25 0 .48-.04.72-.09h.03c1.3-.33 2.25-1.51 2.25-2.91 0-1.4-.95-2.58-2.25-2.91-.23-.06-.49-.09-.75-.09zm0 2v2c.09 0 .18-.01.25-.03.43-.11.75-.51.75-.97 0-.46-.31-.86-.75-.97-.08-.02-.17-.03-.25-.03z"/>
@@ -64,6 +64,7 @@
                             <path d="M1.41 0l-1.41 1.41.72.72 1.78 1.81-1.78 1.78-.72.69 1.41 1.44.72-.72 1.81-1.81 1.78 1.81.69.72 1.44-1.44-.72-.69-1.81-1.78 1.81-1.81.72-.72-1.44-1.41-.69.72-1.78 1.78-1.81-1.78-.72-.72z" />
                         </svg>
                     </div>
+                </div>
                 </div>            
             </div>
             <no-ssr>
@@ -235,13 +236,12 @@ $pink-500: #E91E63;
 
 .player {
     display: grid;
-    grid-auto-columns: 1fr 256px 2fr 256px 1fr;
-    grid-template-areas: '. info main mute close'; 
+    grid-auto-columns: 4fr 1fr 1fr;
+    grid-template-areas: 'info main right'; 
 
 
     width: 100%;
     height: 100%;
-    min-width: 300px;
     align-items: center;
 
     user-select: none;
@@ -287,10 +287,10 @@ $pink-500: #E91E63;
         color: white;
         display: flex;
         flex-grow: 1;
-        // justify-content: space-between;
         align-items: center;
         margin-left: 24px;
         margin-right: 24px;
+        display: none;
         .slider {
             margin-left: 16px;
             margin-right: 16px;
@@ -314,10 +314,8 @@ $pink-500: #E91E63;
 }
 .player__info {
     grid-area: info;
-    display: grid;
-    grid-auto-columns: 64px 256px;
-    grid-template-areas: 'image text';
-    grid-gap: 16px;
+    display: flex;
+    margin: 16px;
 
     .player__image {
         grid-area: image;
@@ -332,7 +330,7 @@ $pink-500: #E91E63;
         display: grid;
 
         .player__song-text-wrapper {
-            margin: auto 0;
+            margin: auto 16px;
 
             .player__song-artist {
                 color: $grey-500;
@@ -346,15 +344,24 @@ $pink-500: #E91E63;
         font-size: 10pt;
     }
 }
-.player__main-ctrl {
-    grid-area: main;
+.player__right {
+    grid-area: right;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+
+    * {
+        margin: 0 12px;
+    }
 }
+
+
 .player__buttons {
-    margin-bottom: 8px;
+    margin: 8px 0;
 }
 .player__sound-ctrl {
-    grid-area: mute;
-    margin: auto;
+    display: none;
     cursor: pointer;
 
     .player__sound-on {
@@ -423,6 +430,18 @@ $pink-500: #E91E63;
     }
 }
 
+@media screen and (min-width: $screen-m) {
+    .player {
+        grid-auto-columns: 1fr 2fr 1fr;
+
+        .player__progress-bar {
+            display: flex;
+        }
+    }
+    .player__sound-ctrl {
+        display: initial;
+    }
+}
 
 </style>
 
