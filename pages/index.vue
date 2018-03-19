@@ -54,11 +54,24 @@ export default {
 </script>
 
 <style lang="scss">
+@import 'assets/styles/util.scss';
+
 #home-page {
     background-color: #f7f7f7;
 }
 .container > * {
     margin: 64px 32px;
+}
+
+@media screen and (min-width: $screen-lg) {
+    #home-page {
+        display: grid;
+        grid-template-areas: '. container .';
+        grid-template-columns: 1fr $screen-lg 1fr;
+    }
+    .container {
+        grid-area: container
+    }
 }
 
 </style>
