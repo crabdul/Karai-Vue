@@ -6,9 +6,9 @@
             </nuxt-link>
             <nav class="primary-nav">
                 <ul class="primary-nav__list">
-                    <nuxt-link class="primary-nav__item" :to="'tracks'" tag="li" ><a class="primary-nav__link">NEW TRACKS</a></nuxt-link>
-                    <nuxt-link class="primary-nav__item" :to="'albums'" tag="li"><a class="primary-nav__link">NEW ALBUMS</a></nuxt-link>
-                    <nuxt-link class="primary-nav__item" :to="'radio'" tag="li"><a class="primary-nav__link">KARAI RADIO</a></nuxt-link>
+                    <nuxt-link class="primary-nav__item" :to="'tracks'" tag="li" ><a class="primary-nav__link">new tracks</a></nuxt-link>
+                    <nuxt-link class="primary-nav__item" :to="'albums'" tag="li"><a class="primary-nav__link">new albums</a></nuxt-link>
+                    <nuxt-link class="primary-nav__item" :to="'radio'" tag="li"><a class="primary-nav__link">karai radio</a></nuxt-link>
                 </ul>
             </nav>
         </div>
@@ -36,7 +36,6 @@ $min-width: 800px;
 .sitenav {
     position: relative;
     z-index: 100; // Order above content
-    font-family: 'Lato', sans-serif;
     font-style: italic;
     width: 100%;
     background-color: white; // background-color: #121212;
@@ -48,7 +47,6 @@ $min-width: 800px;
 }
 
 .nav-container__logo {
-    text-align: center;
     display: grid;
     height: 100%;
     align-items: center;
@@ -78,6 +76,7 @@ $min-width: 800px;
 .primary-nav__item {
     display: inline-block;
     padding: 1.5rem;
+    font-size: 16pt;
 }
 
 .primary-nav__link {

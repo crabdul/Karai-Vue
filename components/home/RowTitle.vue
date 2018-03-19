@@ -38,6 +38,7 @@ export default {
 }
 
 .section-header__title {
+    cursor: pointer;
     p {
         color: #2b2b2b;
         font-size: 40pt;

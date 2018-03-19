@@ -137,6 +137,7 @@ export default {
     display: grid;
     align-content: center;
     justify-content: center;
+    cursor: pointer;
 
     .post__title {
         font-size: 20pt;

@@ -35,6 +35,7 @@ body {
 
 a {
     color: #2b2b2b;
+    cursor: pointer;
 }
 
 .app-player {
