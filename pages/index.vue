@@ -67,10 +67,13 @@ export default {
     #home-page {
         display: grid;
         grid-template-areas: '. container .';
-        grid-template-columns: 1fr $screen-lg 1fr;
+        grid-template-columns: 1fr $container 1fr;
     }
     .container {
-        grid-area: container
+        grid-area: container;
+        > * {
+            margin: 64px 0;
+        }
     }
 }
 
