@@ -29,28 +29,35 @@ export default {
         }
     },
     mounted () {
-        document.addEventListener('scroll', this.checkBottomReached)
+        this.addBottomless()
     },
     methods: {
         checkBottomReached () {
             try {
-                const e = document.querySelector('.infinity-container').lastChild
+                const e = document.querySelector('.cards').lastChild
                 if (util.isInViewport(e)) {
                     this.getNewPosts()
                 }
             } catch (error) {
-                document.removeEventListener('scroll', this.checkBottomReached)
+                this.removeBottomless()
             }
         },
         getNewPosts () {
-            document.removeEventListener('scroll', this.checkBottomReached)
+            this.removeBottomless()
+            console.log(this.category);
             wp.getPostByCategory(this.category, this.page, 12)
             .then( posts => {
                 posts.forEach(post => this.posts.push(post))
                 this.page++
-                document.addEventListener('scroll', this.checkBottomReached)
+                this.addBottomless()
             })
-            .catch(e => document.removeEventListener('scroll', this.checkBottomReached))
+            .catch(e => this.removeBottomless())
+        },
+        addBottomless () {
+            document.addEventListener('scroll', this.checkBottomReached)
+        },
+        removeBottomless () {
+            document.removeEventListener('scroll', this.checkBottomReached   )
         }
     }
 }
