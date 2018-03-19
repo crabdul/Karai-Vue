@@ -54,18 +54,6 @@ export default {
             type: Number
         }
     },
-    head () {
-        return {
-            meta: [
-                { hid: 'description', name: 'description', content: this.description },
-                { hid: 'og:description', property: 'og:description', content: this.description },
-                { property: 'og:type', content: 'article' },
-                { hid: 'og:title', property: 'og:title', content: this.post.acf.abstract },
-                { property: 'og:image', content: this.post.acf.cover_art },
-                { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.post.slug}`}
-            ]
-        }
-    },
     components: {
         PlayAlbum,
     },
