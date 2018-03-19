@@ -95,7 +95,7 @@ export default {
     padding-bottom: 0;
 }
 .post:nth-child(even) {
-    background-color: black;
+    background-color: #212121;
 
     .post-content {
         color: $white;
