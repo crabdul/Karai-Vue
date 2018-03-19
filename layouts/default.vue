@@ -4,7 +4,9 @@
     <app-home-header v-if="['index'].indexOf($route.name) > -1"/>
     <nuxt/>
     <appFooter/>
-    <app-player v-if="this.$store.getters.getPlayerState"/>
+    <transition name="slide">
+      <app-player v-if="this.$store.getters.getPlayerState"/>
+    </transition>
   </div>
 </template>
 
