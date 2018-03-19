@@ -18,7 +18,9 @@
             <play-album :post="post.acf"/>
         </div>
         <div class="post-content">
-            <div class="post-content__text" v-html="post.content.rendered">
+            <div class="post-content__text">
+                <div class="post-content__summary">{{ post.acf.abstract }}</div>
+                <div class="post-content__main" v-html="post.content.rendered"></div>
             </div>
             <div class="post-details__meta">                    
                 <div class="card__genres">
@@ -169,10 +171,18 @@ export default {
     color: $black;
     font-family: 'Lato-400', sans-serif;
     line-height: 2;
-    font-size: 12pt;
     letter-spacing: 0.3px;
     white-space: pre-wrap;
+
+    .post-content__summary {
+        font-size: 15pt;
+        font-weight: 900;
+        margin-bottom: 32px;
+    }
     
+    .post-content__main {
+        font-size: 13pt;
+    }
 }
 
 @media screen and (min-width: $screen-m) {
@@ -202,7 +212,7 @@ export default {
     .post-content {
         grid-template-columns: 200px 600px 1fr;
         grid-template-areas: 'meta content .';
-        margin: 32px 32px;
+        margin: 64px 32px;
     }
     .post__header {
         grid-template-columns: 1fr 2fr 1fr;
