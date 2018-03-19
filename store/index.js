@@ -33,6 +33,7 @@ const createStore = () => {
     },
     actions: {
       songData ({ commit }, data) {
+        console.log(data);
         commit(types.SET_SONG_DATA, data)
       },
       openPlayer ({ commit }) {
