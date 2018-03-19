@@ -1,25 +1,27 @@
 <template>
-    <div class="card">
-        <nuxt-link 
-        :to="`${category}/${post.slug}`"
-        >
-        <div class="card__img">
-            <img :src="post.acf.cover_art" :alt="'post.acf.title post.acf.artist'">
-        </div>
-        <div class="card__details">
-            <div class="card__post-details">
-                <h3 class="card__title"> {{ post.acf.title }}</h3>
-                <h3 class="card__artist">{{ post.acf.artist }}</h3>
+    <transition name="fade">
+        <div class="card">
+            <nuxt-link 
+            :to="`${category}/${post.slug}`"
+            >
+            <div class="card__img">
+                <img :src="post.acf.cover_art" :alt="'post.acf.title post.acf.artist'">
             </div>
-            <div class="card__meta">
-                <div class="card__genres">
-                    <span class="card__genre" v-for="(genre, index) in genres" v-bind:key="index">{{ genre }}</span>
+            <div class="card__details">
+                <div class="card__post-details">
+                    <h3 class="card__title"> {{ post.acf.title }}</h3>
+                    <h3 class="card__artist">{{ post.acf.artist }}</h3>
                 </div>
-                <p class="card__date">{{ date }}</p>
+                <div class="card__meta">
+                    <div class="card__genres">
+                        <span class="card__genre" v-for="(genre, index) in genres" v-bind:key="index">{{ genre }}</span>
+                    </div>
+                    <p class="card__date">{{ date }}</p>
+                </div>
             </div>
+            </nuxt-link>
         </div>
-        </nuxt-link>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -99,15 +101,22 @@ export default {
 }
 
 @media screen and (min-width: $screen-lg) {
-.card {
-    .card__details {
-        .card__title {
-            font-size: 13pt;
-        }
-        .card__date {
-            font-size: 9pt;
+    .card {
+        .card__details {
+            .card__title {
+                font-size: 13pt;
+            }
+            .card__date {
+                font-size: 9pt;
+            }
         }
     }
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
