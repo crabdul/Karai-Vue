@@ -52,21 +52,22 @@ $min-width: 800px;
     align-items: center;
 
     h1 {
-        font-family: 'Lato', sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
         font-size: 30pt;
         color: black;
         display: inline-block;
-        text-shadow: -0.06em 0 red, 0.06em 0 cyan;
+        text-shadow: -0.05em 0 red, 0.05em 0 cyan;
         transition: all linear 0.1s;
         cursor: pointer;
 
         &:hover {
-            text-shadow: 0.06em 0 red, -0.06em 0 cyan;
+            text-shadow: 0.05em 0 red, -0.05em 0 cyan;
         }
     }
 }
 .primary-nav {
     display: none;
+    font-style: normal;
 }
 
 .primary-nav__list {

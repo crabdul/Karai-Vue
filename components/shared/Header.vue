@@ -31,8 +31,6 @@ $min-width: 800px;
 }
 
 nav {
-    font-family: 'Lato', sans-serif;
-    font-style: italic;
     width: 100%;
     height: 54px;
     background-color: white; // background-color: #121212;
@@ -45,16 +43,17 @@ nav {
     align-items: center;
 
     h1 {
-        font-family: 'Lato', sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-style: italic;
         font-size: 28pt;
         color: black;
         display: inline-flex;
-        text-shadow: -0.06em 0 red, 0.06em 0 cyan;
+        text-shadow: -0.05em 0 red, 0.05em 0 cyan;
         transition: all linear 0.1s;
         cursor: pointer;
 
         &:hover {
-            text-shadow: 0.06em 0 red, -0.06em 0 cyan;
+            text-shadow: 0.05em 0 red, -0.05em 0 cyan;
         }
     }
 }
