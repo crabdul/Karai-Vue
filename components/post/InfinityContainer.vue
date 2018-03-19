@@ -39,14 +39,14 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
                     { property: 'og:type', content: 'article' },
                     { hid: 'og:title', property: 'og:title', content: `${this.posts[this.currentPost].acf.title} - ${this.posts[this.currentPost].acf.artist}` },
                     { property: 'og:image', content: this.posts[this.currentPost].acf.cover_art },
-                    { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.posts[this.currentPost].slug}`}
+                    { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.posts[this.currentPost].slug}`},
                 ]
             }
         },
         // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
         mounted () {
             this.windowResize()
-            if (window.innerWidth >= 514) this.addParallax()
+            if (window.innerWidth >= 514 && this.isParallax) this.addParallax()
             this.addInfiniteScroll()
             this.addChangeUrl()
         },
