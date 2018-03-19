@@ -83,11 +83,12 @@ export default {
     grid-template-areas: '. image .''. header .''. content .';
     grid-gap: 16px;
     align-content: center;
-    padding: 64px 0;
+    padding-top: 96px;
+    padding-bottom: 64px;
     color: whitesmoke;
 }
 .post:first-child {
-    padding-top: 0;
+    padding-top: 64px;
 }
 
 .post:last-child {
@@ -117,30 +118,31 @@ export default {
     grid-area: header;
     display: grid;
     align-content: center;
-    .post-details {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 400;
-        * {
-            margin: 8px 0;
+    margin-top: 0;
+        .post-details {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 400;
+            * {
+                margin: 8px 0;
+            }
+            h3 {
+                font-size: 30pt;
+            }
+            .post-details__title {
+                font-weight: 700;
+            }
+            .post-details__artist {
+                font-style: italic;
+                color: $red-A700;
+            }
+            .post-details__meta {
+                margin-top: 32px;
+                font-size: 10pt;
+            }
+            .post-details__date {
+                color: #9E9E9E;
+            }
         }
-        h3 {
-            font-size: 30pt;
-        }
-        .post-details__title {
-            font-weight: 700;
-        }
-        .post-details__artist {
-            font-style: italic;
-            color: $red-A700;
-        }
-        .post-details__meta {
-            margin-top: 32px;
-            font-size: 10pt;
-        }
-        .post-details__date {
-            color: #9E9E9E;
-        }
-    }
 }
 
 .post-image__container {
@@ -169,6 +171,7 @@ export default {
     line-height: 1.8;
     font-size: 12pt;
     white-space: pre-wrap;
+    word-spacing: 3px;
 }
 
 @media screen and (min-width: $screen-m) {
@@ -178,49 +181,55 @@ export default {
         grid-template-areas: '. image .''. header .''. content .';
         grid-gap: 16px;
     }
+    .post:first-child {
+        padding-top: 96px;
+    }
     .post-content {
         font-size: 13pt;
     }
-}
-
-@media screen and (min-width: $screen-lg) {
-    .post:first-child {
-        height: calc(100vh - 54px);
-    }
-    .post {
-        display: grid;
-        grid-template-columns: 1fr 250px $image-lg 430px 1fr;
-        grid-template-areas: '. header image content .';
-        grid-gap: 0px;
-        margin: 0;
-        min-height: 600px;
-        height: 100vh;
-        .post-content__container {
-            margin-left: 48px;
-            border-bottom: none;
-            padding-bottom: 0;
-            max-height: $image-lg;
-                // overflow: scroll;
-                padding-right: 8px;
-        }
-    }
-    .post-content {
-        font-size: 11pt;
+    .post-details__container {
+        margin-top: 32px;
     }
 }
 
-@media screen and (min-width: $screen-xl) {
-    .post {
-        grid-template-columns: 1fr 384px $image-xl 384px 1fr;
-        .post-content__container {
-            margin-left: 64px;
-                font-size: 12pt;
-                max-height: $image-xl;
-        }
-        .post-details h3 {
-            font-size: 36pt;
-        }
-    }
-}
+// @media screen and (min-width: $screen-lg) {
+//     .post:first-child {
+//         height: calc(100vh - 54px);
+//     }
+//     .post {
+//         display: grid;
+//         grid-template-columns: 1fr 250px $image-lg 430px 1fr;
+//         grid-template-areas: '. header image content .';
+//         grid-gap: 0px;
+//         margin: 0;
+//         min-height: 600px;
+//         height: 100vh;
+//         .post-content__container {
+//             margin-left: 48px;
+//             border-bottom: none;
+//             padding-bottom: 0;
+//             max-height: $image-lg;
+//                 // overflow: scroll;
+//                 padding-right: 8px;
+//         }
+//     }
+//     .post-content {
+//         font-size: 11pt;
+//     }
+// }
+
+// @media screen and (min-width: $screen-xl) {
+//     .post {
+//         grid-template-columns: 1fr 384px $image-xl 384px 1fr;
+//         .post-content__container {
+//             margin-left: 64px;
+//                 font-size: 12pt;
+//                 max-height: $image-xl;
+//         }
+//         .post-details h3 {
+//             font-size: 36pt;
+//         }
+//     }
+// }
 </style>
 
