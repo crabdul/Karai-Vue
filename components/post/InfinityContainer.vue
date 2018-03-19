@@ -45,26 +45,27 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
         },
         // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
         mounted () {
-            this.windowResize();
-            this.windowScroll();
-            // this.infiniteScroll();
+            this.windowResize()
+            if (window.innerWidth >= 514) this.addParallax()
+            this.addInfiniteScroll()
+            this.addChangeUrl()
         },
         methods: {
             // Determine if central element is in the viewport
-            isInViewportSingle: function(element) {
-                var rect = element.getBoundingClientRect();
-                var html = document.documentElement;
-                return  rect.bottom <= ( window.innerHeight + 100 || html.clientHeight + 100) && rect.top >= 0; 
+            isInViewportSingle (element) {
+                let rect = element.getBoundingClientRect();
+                let html = document.documentElement;
+                return  rect.bottom <= (window.innerHeight || html.clientHeight) && rect.top >= 0; 
             },
             // Determine if element is in the viewport
-            isInViewport: function(element) {
-                var rect = element.getBoundingClientRect();
-                var html = document.documentElement;
+            isInViewport (element) {
+                let rect = element.getBoundingClientRect();
+                let html = document.documentElement;
                 return  rect.bottom >= 0 && rect.top <= ( window.innerHeight || html.clientHeight); 
             },
             changeURL: function() {
                 [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
-                    if (this.isInViewportSingle(post) && (index !== this.currentPost)) {
+                    if (this.isInViewportSingle(post.querySelector('.post-image')) && (index !== this.currentPost)) {
                         const slug = this.posts[index].slug;
                         history.pushState(null, null, `/${this.category}/${slug}`)
                         this.currentPost = index
@@ -72,12 +73,10 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
                 });
             },
             parallax() {
-                [...this.$el.querySelectorAll('.post')].forEach((post, index) => {
-                    if (this.isInViewport(post)) {
-                        const ratio = this.getParallaxRatio(post);
-                        post.querySelector('.post-content__container').style.transform = `matrix(1, 0, 0, 1, 0, ${ratio * 40})`;
-                        post.querySelector('.post-details__container').style.transform = `matrix(1, 0, 0, 1, 0, ${ratio * 40})`;
-                    }
+                [...this.$el.querySelectorAll('.post')].forEach((e, index) => {
+                    const ratio = this.getParallaxRatio(e);
+                    this.applyMatrixTransformation(e.querySelector('.post-content__container'), ratio)
+                    this.applyMatrixTransformation(e.querySelector('.post-details__container'), ratio)
                 });
             },
             getParallaxRatio(element) {
@@ -89,32 +88,36 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
                 return ratio
             },
             windowResize() {
-                window.onresize = () => {
-                    // toggle scroll event listener for parallax
-                    if(window.innerWidth >= 960) {
-                        window.addEventListener('scroll', this.parallax );
-                    } else { 
-                        window.removeEventListener('scroll', this.parallax );
-                        // remove transformation
-                        [...this.$el.querySelectorAll('.post-content__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-                        [...this.$el.querySelectorAll('.post-details__container')].forEach( e => e.style.transform = 'matrix(1, 0, 0, 1, 0, 0)');
-                    };
-                }
+                window.onresize = () => (window.innerWidth >= 514) ? this.addParallax() : this.removeParallax()
             },
-            
-            windowScroll () {
-                window.addEventListener( 'scroll', this.changeURL)
-                if (window.innerWidth >= 960){
-                    window.addEventListener( 'scroll', this.parallax )
-                }
+            applyMatrixTransformation (element, ratio) {
+                element.style.transform = `matrix(1, 0, 0, 1, 0, ${ratio * 40})`
+            },
+            addInfiniteScroll () {
                 window.addEventListener( 'scroll', this.infiniteScroll)
             },
+            removeInfinitScroll () {
+                window.removeEventListener('scroll', this.infiniteScroll)
+            },
+            addChangeUrl () {
+                window.addEventListener( 'scroll', this.changeURL)
+            },
+            removeChangeUrl () {
+                window.removeEventListener('scroll', this.changeURL)
+            },
+            addParallax () {
+                window.addEventListener( 'scroll', this.parallax )
+            },
+            removeParallax () {
+                window.removeEventListener('scroll', this.parallax );
+                [...this.$el.querySelectorAll('.post-content__container')].forEach( e => this.applyMatrixTransformation(e, 0));
+                [...this.$el.querySelectorAll('.post-details__container')].forEach( e => this.applyMatrixTransformation(e, 0));
+            },
             infiniteScroll () {
-                const posts = this.$el.querySelectorAll('.post')
-                const lastPost = posts[posts.length - 1]
+                const lastPost = this.$el.querySelector('.post:last-child')
                 if (this.isInViewport(lastPost) && (lastPost.id.split('__')[1] == this.postCount)) {
-                    window.removeEventListener('scroll', this.infiniteScroll)
-                    this.getNextPost();
+                    this.removeInfinitScroll()
+                    this.getNextPost()
                 }
             },
             getNextPost () {
@@ -124,15 +127,15 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
                     .then(post => {
                         this.posts.push(post)
                         this.postCount++
-                        window.addEventListener( 'scroll', this.infiniteScroll)
+                        this.addInfiniteScroll()
                     })
                 }
             }
         },
         destroyed() {
-            window.removeEventListener('scroll', this.changeURL)
-            window.removeEventListener('scroll', this.parallax)
-            window.removeEventListener('scroll', this.infiniteScroll)
+            this.removeChangeUrl()
+            this.removeParallax()
+            this.removeInfinitScroll()
         }
     }
 </script>
