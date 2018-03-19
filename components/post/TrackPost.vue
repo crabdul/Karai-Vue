@@ -89,11 +89,6 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
 
-.infinity-container {
-    position: relative;
-    z-index: 1;
-}
-
 .post {
     display: grid;
     grid-template-columns: 16px 1fr 16px;
@@ -101,6 +96,7 @@ export default {
     grid-gap: 16px;
     align-content: center;
     padding: 64px 0;
+    color: whitesmoke;
 }
 .post:first-child {
     padding-top: 0;

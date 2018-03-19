@@ -128,6 +128,11 @@ export default {
     grid-area: meta;
     font-size: 10pt;
     margin-bottom: 24px;
+    font-family: 'Roboto Condensed', sans-serif;
+
+    * {
+        margin: 12px 0;
+    }
 }
 
 .post-details__author {
@@ -221,10 +226,6 @@ export default {
     .post-content__text {
         font-size: 14pt;
     }
-
 }
 
-@media screen and (min-width: $screen-xl) {
-}
 </style>
-

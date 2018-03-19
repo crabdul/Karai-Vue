@@ -1,7 +1,11 @@
 <template>
     <div class="infinity-container">
+        <div class="albums-container" v-if="category == 'albums'">
+            <div class="albums-inner" v-if="category == 'albums'">
+                <AlbumPost v-if="category == 'albums'" :category="category" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
+            </div>
+        </div>
         <TrackPost v-if="category == 'tracks'" :category="category" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
-        <AlbumPost v-if="category == 'albums'" :category="category" :id="'post__'+(index+1)" :post="post" :index="index" v-for="(post, index) in posts" :key="index"/>
     </div>
 </template>
 
@@ -126,12 +130,23 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
 </script>
 
 <style lang="scss" scoped>
+@import 'assets/styles/util.scss';
 
 .infinity-container {
     position: relative;
     z-index: 1;
-    color: white;
-    font-family: 'Lato', sans-serif;
+}
+
+@media screen and (min-width: $screen-lg) {
+    .albums-container {
+        display: grid;
+        grid-template-columns: 1fr $screen-lg 1fr;
+        grid-template-areas: '. albums .'
+    }
+
+    .albums-inner {
+        grid-area: albums;
+    }
 }
 
 </style>
