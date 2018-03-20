@@ -13,9 +13,9 @@
         </div>
         <div class="menu__list">
             <ul @click="toggleNav()">
-                <nuxt-link :to="'tracks'" tag="li"><div class="menu__item">new tracks</div></nuxt-link>
-                <nuxt-link :to="'albums'" tag="li"><div class="menu__item">new albums</div></nuxt-link>
-                <nuxt-link :to="'radio'" tag="li"><div class="menu__item">radio</div></nuxt-link>
+                <nuxt-link :to="'/tracks'" tag="li"><div class="menu__item">new tracks</div></nuxt-link>
+                <nuxt-link :to="'/albums'" tag="li"><div class="menu__item">new albums</div></nuxt-link>
+                <nuxt-link :to="'/radio'" tag="li"><div class="menu__item">radio</div></nuxt-link>
             </ul>
         </div>
     </div>
