@@ -14,6 +14,7 @@ module.exports = {
       { hid: 'og:url', property: 'og:url', content: 'https://karaimusic.com'},
       { hid: 'og:description', property: 'og:description', content: 'Music Sharing Site'},
       { hid: 'og:title', property: 'og:title', content: 'Karai Music | Music Sharing Site'},
+      { property: 'og:type', content: 'article' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
