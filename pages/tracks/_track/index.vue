@@ -24,7 +24,7 @@ import InfinityContainer from '~/components/post/InfinityContainer.vue'
                     { hid: 'description', name: 'description', content: this.post[0].acf.abstract },
                     { hid: 'og:description', property: 'og:description', content: this.post[0].acf.abstract },
                     { property: 'og:type', content: 'article' },
-                    { hid: 'og:title', property: 'og:title', content: 'Courtney Barnett'},
+                    { hid: 'og:title', property: 'og:title', content: `${this.post[0].acf.title} - ${this.post[0].acf.artist} | Karai Music`},
                     { property: 'og:image', content: this.post[0].acf.cover_art },
                     { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/tracks/${this.post[0].slug}`},
                 ]

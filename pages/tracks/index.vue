@@ -18,10 +18,7 @@ export default {
                 { hid: 'og:url', property: 'og:url', content: 'https://karaimusic.com/tracks/'},
                 { hid: 'og:description', property: 'og:description', content: 'Latest tracks released'},
                 { hid: 'og:title', property: 'og:title', content: 'Karai Music | New tracks'},
-                { property: 'og:type', content: 'object' },
-                { hid: 'og:title', property: 'og:title', content: 'Courtney Barnett'},
-                { property: 'og:image', content: this.posts[3].acf.cover_art },
-
+                { property: 'og:type', content: 'object' }
             ]
         }
     },
