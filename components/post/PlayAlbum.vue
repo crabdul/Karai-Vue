@@ -1,12 +1,13 @@
 <template>
     <div class="album-youtube">
         <div class="album-youtube__song" v-for="(song, index) in post.songs" :key="index">
-            <div class="album-youtube__play-button" v-on:click="playSong(index)">
+            <div class="album-youtube__play-button" v-if="post.song_platform == 'Youtube'" v-on:click="playSong(index)">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 64 64" width="24" height="24"><defs><clipPath id="_clipPath_eOto5QOSpvHxKbZ0mZKtvhDpJgb6C9rR"><rect width="64" height="64"/></clipPath></defs><g clip-path="url(#_clipPath_eOto5QOSpvHxKbZ0mZKtvhDpJgb6C9rR)"><path d=" M 1 32 C 1 14.891 14.891 1 32 1 C 49.109 1 63 14.891 63 32 C 63 49.109 49.109 63 32 63 C 14.891 63 1 49.109 1 32 Z " fill="none" vector-effect="non-scaling-stroke" stroke-width="1.5" stroke="rgb(255,255,255)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><polygon points="44,32.5,25,47,25,18" fill="rgb(255,255,255)"/></g></svg>
             </div>
-            <div class="album-youtube__song-title">
+            <div class="album-youtube__song-title" v-if="post.song_platform == 'Youtube'">
                 {{ song.song_title }}
             </div>
+            <iframe class="album__spotify-player" :src="`https://open.spotify.com/embed?uri=${song.song_youtube_id}`" v-if="post.song_platform == 'Spotify'" width="240" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
     </div>
 </template>
@@ -22,7 +23,7 @@ export default {
             title: this.post.songs[index].song_title,
             artist: this.post.artist,
             cover_art: this.post.cover_art,
-            youtube_id: this.post.songs[index].song_youtube_id
+            song_id: this.post.songs[index].song_youtube_id
         })
         this.$store.dispatch('openPlayer')
     },
@@ -32,6 +33,8 @@ export default {
 
 
 <style lang="scss" scoped>
+@import 'assets/styles/util.scss';
+
 .album-youtube {
     margin-top: 32px;
     margin-bottom: 16px;
@@ -53,7 +56,7 @@ export default {
                 &:hover {
                     transform: scale(1.05);
                     path {
-                        stroke: white;
+                        stroke: black;
                     }
                 }
             }
@@ -61,6 +64,26 @@ export default {
         .album-youtube__song-title {
             align-self: center;
         }
+    }
+}
+.post {
+    svg g polygon {
+        fill: $black;
+    }
+    .album-youtube__song-title {
+        color: $black;
+    }
+}
+
+.cover-small {
+    background-image: none;
+}
+
+@media screen and (min-width: $screen-ml) {
+    .album-youtube {
+        display: grid;
+        justify-content: center;
+        align-content: center;
     }
 }
 </style>

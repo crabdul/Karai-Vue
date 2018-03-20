@@ -45,8 +45,8 @@
                         <span class="total-time">{{ totalTime }}</span>
                     </div>
                 </div>
-
-                <div class="player__sound-ctrl">
+                <div class="player__right">
+                    <div class="player__sound-ctrl">
                     <div class="player__sound-on" v-show="soundOn" @click="soundOn = false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
                             <path d="M3.34 0l-1.34 2h-2v4h2l1.34 2h.66v-8h-.66zm1.66 1v1c.17 0 .34.02.5.06.86.22 1.5 1 1.5 1.94s-.63 1.72-1.5 1.94c-.16.04-.33.06-.5.06v1c.25 0 .48-.04.72-.09h.03c1.3-.33 2.25-1.51 2.25-2.91 0-1.4-.95-2.58-2.25-2.91-.23-.06-.49-.09-.75-.09zm0 2v2c.09 0 .18-.01.25-.03.43-.11.75-.51.75-.97 0-.46-.31-.86-.75-.97-.08-.02-.17-.03-.25-.03z"/>
@@ -64,6 +64,7 @@
                             <path d="M1.41 0l-1.41 1.41.72.72 1.78 1.81-1.78 1.78-.72.69 1.41 1.44.72-.72 1.81-1.81 1.78 1.81.69.72 1.44-1.44-.72-.69-1.81-1.78 1.81-1.81.72-.72-1.44-1.41-.69.72-1.78 1.78-1.81-1.78-.72-.72z" />
                         </svg>
                     </div>
+                </div>
                 </div>            
             </div>
             <no-ssr>
@@ -210,218 +211,237 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'assets/styles/util.scss';
 
-    $light-gray: #D8D8D8;
-    $grey-500: #9E9E9E;
-    $pink-500: #E91E63;
+$light-gray: #D8D8D8;
+$grey-500: #9E9E9E;
+$pink-500: #E91E63;
 
-    #player {
-        position: fixed;
-        bottom: 0;
-        z-index: 99;
-        width: 100%;
-        font-family: 'Lato', sans-serif;
-    }
+#player {
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+}
 
-    .player__container {
-        height: 96px;
-        background-color: black;
-    }
-    .progress__container {
-        width: 33%;
-    }
-
-
-    .player {
-        display: grid;
-        grid-auto-columns: 1fr 256px 2fr 256px 1fr;
-        grid-template-areas: '. info main mute close'; 
+.player__container {
+    height: 96px;
+    background-color: black;
+}
+.progress__container {
+    width: 33%;
+}
 
 
-        width: 100%;
-        height: 100%;
-        min-width: 300px;
-        align-items: center;
-
-        user-select: none;
-        background-color: #191919;
-        color: white;
-        .play-pause-btn {
-            cursor: pointer;
-        }
-        .spinner {
-            width: 18px;
-            height: 18px;
-            background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/loading.png);
-            background-size: cover;
-            background-repeat: no-repeat;
-            animation: spin 0.4s linear infinite;
-            margin: auto;
-
-        }
-        .slider {
-            flex-grow: 1;
-            background-color: $light-gray;
-            cursor: pointer;
-            position: relative;
-            .progress {
-                background-color: $pink-500;
-                border-radius: inherit;
-                position: absolute;
-                pointer-events: none;
-                .pin {
-                    height: 12px;
-                    width: 12px;
-                    border-radius: 6px;
-                    background-color: white;
-                    position: absolute;
-                    pointer-events: all;
-                    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
-                }
-            }
-        }
-        .player__progress-bar {
-            font-size: 12px;
-            line-height: 18px;
-            color: white;
-            display: flex;
-            flex-grow: 1;
-            // justify-content: space-between;
-            align-items: center;
-            margin-left: 24px;
-            margin-right: 24px;
-            .slider {
-                margin-left: 16px;
-                margin-right: 16px;
-                border-radius: 2px;
-                height: 4px;
-                // background-color: #D8D8D8;
-
-                .progress {
-                    width: 0;
-                    height: 100%;
-                    .pin {
-                        right: -6px;
-                        top: -4px;
-                    }
-                }
-            }
-            span {
-                cursor: default;
-            }
-        }
-    }
-    .player__info {
-        grid-area: info;
-        display: grid;
-        grid-auto-columns: 64px 256px;
-        grid-template-areas: 'image text';
-        grid-gap: 16px;
-
-        .player__image {
-            grid-area: image;
-            
-            img {
-                width: 64px;
-                display: inline-block;
-            }
-        }
-        .player__song-text {
-            grid-area: text;
-            display: grid;
-
-            .player__song-text-wrapper {
-                margin: auto 0;
-
-                .player__song-artist {
-                    color: $grey-500;
-                }
-            }
-        }
+.player {
+    display: grid;
+    grid-auto-columns: 4fr 1fr 1fr;
+    grid-template-areas: 'info main right'; 
 
 
-        p {
-            line-height: 1.4;
-            font-size: 10pt;
-        }
-    }
-    .player__main-ctrl {
-        grid-area: main;
-    }
-    .player__buttons {
-        margin-bottom: 8px;
-    }
-    .player__sound-ctrl {
-        grid-area: mute;
-        margin: auto;
-        cursor: pointer;
+    width: 100%;
+    height: 100%;
+    align-items: center;
 
-        .player__sound-on {
-            padding-left: 10px;
-        }
-        path {
-            fill: white;
-        }
-
-    }
-
+    user-select: none;
+    background-color: #191919;
+    color: white;
     .play-pause-btn {
-        display: table;
-        margin: 0 auto;
-        transition: all 0.1s ease-in;
-        &:hover {
-            transform: scale(1.1);
-        }
-
-        .pause-btn,
-        .play-btn {
-            height: 32px;
-            cursor: pointer;
-            svg {
-                width: 32px;
-                height: 32px;
-            }
-        }
-
-    }
-    .loading {
-        height: 32px;
-        display: grid;
-
+        cursor: pointer;
     }
     .spinner {
-        margin: 0 auto;
-        width: 32px;
-        height: 32px;
+        width: 18px;
+        height: 18px;
+        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/loading.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        animation: spin 0.4s linear infinite;
+        margin: auto;
+
     }
-
-    @keyframes spin {
-        from {
-            transform: rotateZ(0);
-        }
-        to {
-            transform: rotateZ(1turn);
-        }
-    }
-
-    .player__close-container {
-        grid-area: close;
-        display: grid;
-        transition: all ease-in .1s;
-
-        .player__close {
-            margin: auto;
-            cursor: pointer;
-            path {
-                stroke: white;
-                fill: white;
+    .slider {
+        flex-grow: 1;
+        background-color: $light-gray;
+        cursor: pointer;
+        position: relative;
+        .progress {
+            background-color: $pink-500;
+            border-radius: inherit;
+            position: absolute;
+            pointer-events: none;
+            .pin {
+                height: 12px;
+                width: 12px;
+                border-radius: 6px;
+                background-color: white;
+                position: absolute;
+                pointer-events: all;
+                box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
             }
         }
-        &:hover {
-            transform: scale(1.1);
+    }
+    .player__progress-bar {
+        font-size: 12px;
+        line-height: 18px;
+        color: white;
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        margin-left: 24px;
+        margin-right: 24px;
+        display: none;
+        .slider {
+            margin-left: 16px;
+            margin-right: 16px;
+            border-radius: 2px;
+            height: 4px;
+            // background-color: #D8D8D8;
+
+            .progress {
+                width: 0;
+                height: 100%;
+                .pin {
+                    right: -6px;
+                    top: -4px;
+                }
+            }
+        }
+        span {
+            cursor: default;
+        }
+    }
+}
+.player__info {
+    grid-area: info;
+    display: flex;
+    margin: 16px;
+
+    .player__image {
+        grid-area: image;
+        
+        img {
+            width: 64px;
+            display: inline-block;
+        }
+    }
+    .player__song-text {
+        grid-area: text;
+        display: grid;
+
+        .player__song-text-wrapper {
+            margin: auto 16px;
+
+            .player__song-artist {
+                color: $grey-500;
+            }
         }
     }
 
+
+    p {
+        line-height: 1.4;
+        font-size: 10pt;
+    }
+}
+.player__right {
+    grid-area: right;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+
+    * {
+        margin: 0 12px;
+    }
+}
+
+
+.player__buttons {
+    margin: 8px 0;
+}
+.player__sound-ctrl {
+    display: none;
+    cursor: pointer;
+
+    .player__sound-on {
+        padding-left: 10px;
+    }
+    path {
+        fill: white;
+    }
+
+}
+
+.play-pause-btn {
+    display: table;
+    margin: 0 auto;
+    transition: all 0.1s ease-in;
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    .pause-btn,
+    .play-btn {
+        height: 32px;
+        cursor: pointer;
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+}
+.loading {
+    height: 32px;
+    display: grid;
+
+}
+.spinner {
+    margin: 0 auto;
+    width: 32px;
+    height: 32px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotateZ(0);
+    }
+    to {
+        transform: rotateZ(1turn);
+    }
+}
+
+.player__close-container {
+    grid-area: close;
+    display: grid;
+    transition: all ease-in .1s;
+
+    .player__close {
+        margin: auto;
+        cursor: pointer;
+        path {
+            stroke: white;
+            fill: white;
+        }
+    }
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+@media screen and (min-width: $screen-m) {
+    .player {
+        grid-auto-columns: 1fr 2fr 1fr;
+
+        .player__progress-bar {
+            display: flex;
+        }
+    }
+    .player__sound-ctrl {
+        display: initial;
+    }
+}
 
 </style>
 

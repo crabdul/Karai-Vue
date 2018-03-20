@@ -1,21 +1,26 @@
 <template>
   <div class="">
-    <app-header/>
+    <app-header v-if="['index'].indexOf($route.name) == -1"/>
+    <app-home-header v-if="['index'].indexOf($route.name) > -1"/>
     <nuxt/>
     <appFooter/>
-    <app-player v-if="this.$store.getters.getPlayerState"/>
+    <transition name="slide">
+      <app-player v-if="this.$store.getters.getPlayerState"/>
+    </transition>
   </div>
 </template>
 
 <script>
-import Header from '@/components/shared/Header.vue';
-import Player from '@/components/shared/Player.vue';
-import Footer from '@/components/shared/Footer.vue';
+import Header from '@/components/shared/Header.vue'
+import HomeHeader from '@/components/shared/HomeHeader.vue'
+import Player from '@/components/shared/Player.vue'
+import Footer from '@/components/shared/Footer.vue'
 
 
 export default {
   components: {
     appHeader: Header,
+    appHomeHeader: HomeHeader,
     appPlayer: Player,
     appFooter: Footer,
   },
@@ -25,7 +30,14 @@ export default {
 
 <style>
 body {
-    background-color: #111111;
+    background-color: #f7f7f7;
+    color: #2b2b2b;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+a {
+    color: #2b2b2b;
+    cursor: pointer;
 }
 
 .app-player {

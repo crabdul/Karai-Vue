@@ -22,7 +22,7 @@ const createStore = () => {
         state.title = payload.title
         state.artist = payload.artist
         state.coverArt = payload.cover_art
-        state.youtubeID = payload.youtube_id
+        state.youtubeID = payload.song_id
       },
       [types.OPEN_PLAYER] (state) {
         state.showPlayer = true
@@ -33,6 +33,7 @@ const createStore = () => {
     },
     actions: {
       songData ({ commit }, data) {
+        console.log(data);
         commit(types.SET_SONG_DATA, data)
       },
       openPlayer ({ commit }) {

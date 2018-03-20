@@ -1,6 +1,6 @@
 <template>
     <div>
-        <infinity-container :posts="post" :category="'tracks'"/>
+        <infinity-container :posts="post" :category="'tracks'" :isParallax="true" />
     </div>
 </template>
 

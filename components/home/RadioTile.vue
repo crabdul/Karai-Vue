@@ -1,16 +1,11 @@
 <template>
-    <div class="item">
-        <nuxt-link 
-        :to="{ name: 'radio', query: { playlist: post.acf.title }}">
-            <div class="img-container">            
-                <div class="playlist-img__box">
-                    <div class="playlist-img__number">
-                        {{ post.acf.title }}
-                    </div>
-                </div>
-            </div>
-        </nuxt-link>
-    </div>
+  <nuxt-link :to="{ name: 'radio', query: { playlist: post.acf.title }}">
+      <div class="radio__item">
+        <div class="radio__playlist">
+            {{ post.acf.title }}
+        </div>
+      </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -22,22 +17,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'assets/styles/util.scss';
 
-  .playlist-img__box {
-    background-color: white;
-    border-radius: 5px;
-    padding: 16px 0;
+.radio__item {
+  background-color: white;
+  text-align: center;
+  height: 100%;
+  display: grid;
+  align-content: center;
+}
 
-    .playlist-img__number {
-      color: black;
-      font-size: 40pt;
-      text-shadow: -0.06em 0 red, 0.06em 0 cyan;
-      text-align: center;
-      transition: all ease-out 0.3s;
+.radio__playlist {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 32pt;
+  font-style: italic;
 
-      &:hover {
-        text-shadow: -0.06em 0 cyan, 0.06em 0 red;
-      }
-    }
+  &:hover {
+    color: $pink-500;
   }
+}
+
 </style>
