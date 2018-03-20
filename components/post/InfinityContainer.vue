@@ -30,19 +30,19 @@ import AlbumPost from '~/components/post/AlbumPost.vue'
                 currentPost: 0
             }
         },
-        head () {
-            return {
-                title: `${this.posts[this.currentPost].acf.title} - ${this.posts[this.currentPost].acf.artist} | Karai Music`,
-                meta: [
-                    { hid: 'description', name: 'description', content: this.posts[this.currentPost].acf.abstract },
-                    { hid: 'og:description', property: 'og:description', content: this.posts[this.currentPost].acf.abstract },
-                    { property: 'og:type', content: 'article' },
-                    { hid: 'og:title', property: 'og:title', content: `${this.posts[this.currentPost].acf.title} - ${this.posts[this.currentPost].acf.artist}` },
-                    { property: 'og:image', content: this.posts[this.currentPost].acf.cover_art },
-                    { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.posts[this.currentPost].slug}`},
-                ]
-            }
-        },
+        // head () {
+        //     return {
+        //         title: `${this.posts[this.currentPost].acf.title} - ${this.posts[this.currentPost].acf.artist} | Karai Music`,
+        //         meta: [
+        //             { hid: 'description', name: 'description', content: this.posts[this.currentPost].acf.abstract },
+        //             { hid: 'og:description', property: 'og:description', content: this.posts[this.currentPost].acf.abstract },
+        //             { property: 'og:type', content: 'article' },
+        //             { hid: 'og:title', property: 'og:title', content: 'Courtney Barnett'},
+        //             { property: 'og:image', content: this.posts[this.currentPost].acf.cover_art },
+        //             { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/${this.category}/${this.posts[this.currentPost].slug}`},
+        //         ]
+        //     }
+        // },
         // Methods called here as mounted lifecycle hook doesn't run on the server-side rendinering
         mounted () {
             this.windowResize()
