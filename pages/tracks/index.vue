@@ -20,7 +20,7 @@ export default {
                 { hid: 'og:title', property: 'og:title', content: 'Karai Music | New tracks'},
                 { property: 'og:type', content: 'object' },
                 { hid: 'og:title', property: 'og:title', content: 'Courtney Barnett'},
-                { property: 'og:image', content: 'https://karaimusic.co.uk/wp-content/uploads/2018/02/courtney-barnett-album-art-compressor.jpg' },
+                { property: 'og:image', content: this.posts[0].acf.cover_art },
 
             ]
         }
