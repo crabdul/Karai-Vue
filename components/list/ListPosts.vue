@@ -91,7 +91,7 @@ export default {
 @media screen and (min-width: $screen-lg) {
     .container-fluid {
         display: grid;
-        grid-template-columns: 1fr $screen-lg 1fr;
+        grid-template-columns: 1fr $container 1fr;
         grid-template-areas: '. content .';
     }
     .page-header {

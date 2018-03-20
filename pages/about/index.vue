@@ -23,6 +23,7 @@
   margin-top: 64px;
   margin-left: 32px;
   margin-right: 32px;
+  min-height: 70vh;
 }
 .about-container > * {
   margin: 32px 0;

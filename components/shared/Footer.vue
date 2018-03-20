@@ -3,8 +3,8 @@
       <div class="region-footer">
           <div class="row">
               <div class="col col-left">
-                    <p><nuxt-link to="about">About Karai Music</nuxt-link></p>
-                    <p><nuxt-link to="terms">Terms of Service and Privacy Policy</nuxt-link></p>
+                    <p><nuxt-link to="/about">About Karai Music</nuxt-link></p>
+                    <p><nuxt-link to="/terms">Terms of Service and Privacy Policy</nuxt-link></p>
                     <p>Designed by <a href="https://github.com/crabdul">crabdul</a></p>
               </div>
               <div class="col social-icons">
