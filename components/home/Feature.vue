@@ -1,33 +1,30 @@
 <template>
-<div class="hero">
-    <div class="spread">
-        <img :src="post.acf.cover_art" alt="">
-    </div>
-    <div class="hero__content">
-        <div class="hero__header-container mv-16">
-            <nuxt-link 
-            :to="section" 
-            tag="div" 
-            class="hero__header">
-                <h2>new {{ section }}</h2>
-            </nuxt-link>
+<div class="feature">
+    <div class="feature__bg">
+        <div class="spread">
+            <img :src="post.acf.cover_art" alt="">
         </div>
-        <nuxt-link 
-        :to="`${section}/${post.slug}`">
+        <div class="shadow"></div>
+    </div>
+    <div class="feature__content">
         <div class="post">
             <div class="post__meta mv-16">
-                <div class="post__author">By: {{ author }} </div>
+                <div class="card__genres">
+                    <span class="card__genre" v-for="(genre, index) in genres" v-bind:key="index">{{ genre }}</span>
+                </div>
+                <div class="post__author">BY: {{ author }} </div>
                 <div class="post__date">{{ date }} </div>
             </div>
-            <div class="post__cover-art mv-16">
-                <img :src="post.acf.cover_art" alt="">
-            </div>
-            <div class="post__details mv-16">
-                <div class="post__title">{{ post.acf.title }}</div>
-                <div class="post__artist">{{ post.acf.artist }} </div>
-            </div>
+            <nuxt-link :to="`${section}/${post.slug}`">
+                <div class="post__cover-art mv-16">
+                    <img :src="post.acf.cover_art" alt="">
+                </div>
+            </nuxt-link>
+            <nuxt-link class="post__details" :to="`${section}/${post.slug}`" tag="div">
+                <div class="post__title"><p>{{ post.acf.title }}</p></div>
+                <div class="post__artist"><p>{{ post.acf.artist }}</p></div>
+            </nuxt-link>
         </div>
-        </nuxt-link>
     </div>
 </div>
 </template>
@@ -46,6 +43,9 @@ export default {
         },
         date () {
             return util.getDate(this.post.date)
+        },
+        genres () {
+            return util.getGenres(this.post.genre)
         }
   }
 }
@@ -53,35 +53,19 @@ export default {
 
 <style lang="scss" scoped>
 @import 'assets/styles/util.scss';
+@import 'assets/styles/mixins.scss';
 
-.hero {
-    width: 100%;
+.feature {
     position: relative;
+    overflow: hidden;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: whitesmoke;
 }
-.hero__content {
+.feature__content {
     position: relative;
-    z-index: 5;
+    z-index: 20;
     height: 100%;
     display: grid;
-}
-.hero__header-container {
-    margin-left: $margin-s;
-    margin-right: $margin-s;
-    display: grid;
-    align-content: center;
-}
-.hero__header {
-    padding: 8px 0;
-    border-bottom: 1px solid white;
-    cursor: pointer;
-    h2 {
-        font-size: 24pt;
-    }
-    &:hover {
-        h2 {
-            color: $pink-500;
-        }
-    }
 }
 
 .spread {
@@ -95,9 +79,16 @@ export default {
         object-fit: cover;
         width: 100%;
         height: 100%;
-        filter: blur(32px);
-
+        filter: blur(60px);
     }
+}
+
+.shadow {
+    z-index: 15;
+    position: absolute;
+    background: rgba(0,0,0,.40);
+    width: 100%;
+    height: 100%;
 }
 
 .post {
@@ -108,11 +99,7 @@ export default {
     align-content: center;
     margin: 16px $margin-s;
 
-    &:hover {
-        .post__title {
-            color: $pink-500;
-        }
-    }
+
 }
 .post__meta {
     display: grid;
@@ -145,23 +132,45 @@ export default {
 
 .post__details {
     text-align: center;
-    display: grid;
     grid-area: details;
     align-content: center;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+
     .post__title {
-        font-size: 28pt;
+        font-size: 20pt;
         margin-bottom: 16px;
+        display: inline-block;
+        font-style: italic;
+
+        p {
+            display: inline-block;
+            border-bottom: 2px solid transparent;
+        }
     }
     .post__artist {
-        font-size: 24pt;
+        font-size: 16pt;
+        display: inline-block;
+
+        p {
+            display: inline-block;
+            border-bottom: 2px solid transparent;
+        }
+    }
+
+    &:hover {
+        .post__title p,
+        .post__artist p{
+            border-bottom: 2px solid white;
+        }
     }
 }
-a {
-    color: white;
-}
+
 
 @media screen and (min-width: $screen-m) {
-    .hero__header-container {
+    .feature__header-container {
         margin-left: $margin-m;
         margin-right: $margin-m;
     }
@@ -169,7 +178,7 @@ a {
         margin-left: $margin-m;
         margin-right: $margin-m;
         grid-template-areas: 'meta art details';
-        grid-template-columns: 22% 23% 55%;
+        grid-template-columns: 20% 25% 55%;
     }
     .post__meta {
         justify-content: start;
@@ -178,7 +187,7 @@ a {
 }
 
 @media screen and (min-width: $screen-lg) {
-    .hero__header-container {
+    .feature__header-container {
         margin-left: $margin-lg;
         margin-right: $margin-lg;
     }

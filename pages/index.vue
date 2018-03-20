@@ -1,24 +1,26 @@
 <template>
-  <div class="container">
-      <BlockHero :post="trackPosts[0]" :section='"tracks"'/>
-      <BlockTiles class="trackPosts" :posts="trackPosts.slice(1,5)" :section='"tracks"'/>
-      <BlockHero :post="albumPosts[0]" :section='"albums"'/>
-      <BlockTiles class="albumPosts" :posts="albumPosts.slice(1,5)" :section='"albums"'/>
-      <div class="header-container mv-16">
-          <nuxt-link 
-          :to="'radio'" 
-          tag="div" 
-          class="header">
-              <h2>karai radio</h2>
-          </nuxt-link>
-      </div>
-      <BlockTiles class="radioPosts" :posts="radioPosts" :section='"radio"'/>
-  </div>
+    <div id="home-page">
+        <div class="container">
+            <row-title :section="tracks" :sectionTitle="tracksTitle">
+                <feature slot="content" :post="trackPosts[0]" :section="tracks"/>
+            </row-title>
+            <row-cards :posts="trackPosts.slice(1,5)" :section="tracks"/>
+            <row-title :section="albums" :sectionTitle="albumsTitle">
+                <feature slot="content" :post="albumPosts[0]" :section="albums"/>
+            </row-title>            
+            <row-cards :posts="albumPosts.slice(1,5)" :section="albums"/>
+            <row-title :section="radio" :sectionTitle="radioTitle">
+                <radio-cards slot="content" class="feature radio-posts" :posts="radioPosts" :section="radio"/>
+            </row-title>
+        </div>
+    </div>
 </template>
 
 <script>
-import BlockTiles from '~/components/home/BlockTiles.vue'
-import BlockHero from '~/components/home/BlockHero.vue'
+import RowCards from '~/components/home/RowCards.vue'
+import RadioCards from '~/components/home/RadioCards.vue'
+import Feature from '~/components/home/Feature.vue'
+import RowTitle from '~/components/home/RowTitle.vue'
 import wp from '~/lib/wp'
 
 export default {
@@ -26,7 +28,6 @@ export default {
   async asyncData ({ params }) {
     const page = 1;
     const[trackPosts, albumPosts, radioPosts] = await wp.initialPosts()
-
     return {
       trackPosts,
       albumPosts,
@@ -34,8 +35,20 @@ export default {
     }
   },
   components: {
-    BlockTiles,
-    BlockHero
+    RowCards,
+    RowTitle,
+    RadioCards,
+    Feature
+  },
+  data () {
+      return {
+          tracksTitle: 'best new tracks',
+          tracks: 'tracks',
+          albumsTitle: 'best new albums',
+          albums: 'albums',
+          radioTitle: 'karai radio',
+          radio: 'radio'
+      }
   }
 }
 </script>
@@ -43,59 +56,25 @@ export default {
 <style lang="scss">
 @import 'assets/styles/util.scss';
 
-$screen-lg: 1024px;
-$screen-m: 512px;
+#home-page {
+    background-color: #f7f7f7;
+}
+.container > * {
+    margin: 64px 32px;
+}
 
-// Grid styling
-.container {
-    font-family: 'Lato', sans-serif;
-    font-style: italic;
-    color: white;
-
-}
-.trackPosts {
-    grid-area: tracks;
-}
-.albumPosts {
-    grid-area: albums;
-}
-.radioPosts {
-  grid-area: radio;
-}
-.hero {
-    grid-area: hero;
-}
-.header-container {
-    margin-left: $margin-s;
-    margin-right: $margin-s;
-    display: grid;
-    align-content: center;
-}
-.header {
-    padding: 8px 0;
-    border-bottom: 1px solid white;
-    cursor: pointer;
-    h2 {
-        font-size: 24pt;
+@media screen and (min-width: $screen-lg) {
+    #home-page {
+        display: grid;
+        grid-template-areas: '. container .';
+        grid-template-columns: 1fr $container 1fr;
     }
-    &:hover {
-        h2 {
-            color: $pink-500;
+    .container {
+        grid-area: container;
+        > * {
+            margin: 64px 0;
         }
     }
 }
 
-@media screen and (min-width: $screen-m) {
-    .header-container {
-        margin-left: $margin-m;
-        margin-right: $margin-m;
-    }
-}
-
-@media screen and (min-width: $screen-lg) {
-    .header-container {
-        margin-left: $margin-lg;
-        margin-right: $margin-lg;
-    }
-}
 </style>

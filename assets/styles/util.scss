@@ -2,14 +2,25 @@ $grey-900: #111111;
 $black-111111: #111111;
 $pink-500: #E91E63;
 
-// MEDIA QUERY 
+$red-A700: #D50000;
+$white: #E0E0E0;
+$black: #111111;
 
-$screen-lg: 1024px;
+// MEDIA QUERY 
+$screen-xl: 1300px;
+$screen-lg: 1200px;
+$screen-ml: 1000px;
 $screen-m: 512px;
+
+$container: 1072px;
+
 
 $margin-lg: 96px;
 $margin-m: 32px;
 $margin-s: 20px;
+
+$image-lg: 384px;
+$image-xl: 512px;
 
 .mv-32 {
     margin-top: 32px;
