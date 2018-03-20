@@ -52,7 +52,7 @@ module.exports = {
   modules: ['@nuxtjs/sitemap'],
   sitemap: {
       hostname: 'https://karaimusic.com',
-      generate: true,
+      generate: false,
       routes() {
         return axios.all([
           axios.get('https://karaimusic.co.uk/wp-json/wp/v2/posts?categories=2&per_page=100'),
