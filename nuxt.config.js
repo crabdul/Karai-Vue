@@ -49,7 +49,10 @@ module.exports = {
   generate: {
     fallback: true,
   },
-  modules: ['@nuxtjs/sitemap'],
+  modules: ['@nuxtjs/sitemap',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-107203076-1'
+    }]],
   sitemap: {
       hostname: 'https://karaimusic.com',
       generate: false,
