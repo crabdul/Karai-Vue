@@ -25,7 +25,7 @@ import InfinityContainer from '~/components/post/InfinityContainer.vue'
                     { hid: 'og:description', property: 'og:description', content: this.post[0].acf.abstract },
                     { property: 'og:type', content: 'article' },
                     { hid: 'og:title', property: 'og:title', content: `${this.post[0].acf.title} - ${this.post[0].acf.artist} | Karai Music`},
-                    { property: 'og:image', content: this.post[0].acf.cover_art },
+                    { hid: 'og:image', property: 'og:image', content: this.post[0].acf.cover_art },
                     { property: 'og:image:alt', content: `${this.post[0].acf.title} - ${this.post[0].acf.artist}` },
                     { hid: 'og:url', property: 'og:url', content: `https://karaimusic.com/albums/${this.post[0].slug}`},
                 ]

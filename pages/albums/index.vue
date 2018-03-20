@@ -18,7 +18,9 @@ export default {
                 { hid: 'og:url', property: 'og:url', content: 'https://karaimusic.com/albums/'},
                 { hid: 'og:description', property: 'og:description', content: 'Latest albums released'},
                 { hid: 'og:title', property: 'og:title', content: 'Karai Music | New albums'},
-                { property: 'og:type', content: 'object' }
+                { property: 'og:type', content: 'object' },
+                { hid: 'og:image', property: 'og:image', content: 'https://karaimusic.co.uk/wp-content/uploads/2018/03/karai-logo.png'},
+                { hid: 'og:image:alt', property: 'og:image:alt', content: `Karai Music` }
             ]
         }
     },
