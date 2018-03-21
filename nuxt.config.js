@@ -16,6 +16,7 @@ module.exports = {
       { hid: 'og:title', property: 'og:title', content: 'Karai Music | Music Sharing Site'},
       { hid: 'og:image', property: 'og:image', content: 'https://karaimusic.co.uk/wp-content/uploads/2018/03/karai-logo.png'},
       { hid: 'og:image:alt', property: 'og:image:alt', content: `Karai Music` },
+      { hid: 'og:type', property: 'og:type', content: 'object' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
