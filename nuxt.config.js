@@ -8,6 +8,7 @@ module.exports = {
     title: 'Karai Music',
     meta: [
       { charset: 'utf-8' },
+      { name: 'google-site-verification', content: 'QU7SBL4iMOySnsWNxCm4czzlZUWuQ8-n0m_PTN-sxaI' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Music Sharing Site' },
       { property: 'og:site_name', content: 'Karai Music'},
