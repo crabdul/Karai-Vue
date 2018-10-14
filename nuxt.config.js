@@ -43,7 +43,7 @@ module.exports = {
     fallback: true,
   },
   sitemap: {
-    hostname: 'https://karaimusic.com',
+    hostname: 'https://karaimusic.co.uk',
     generate: true,
     routes () {
       return axios.all([
